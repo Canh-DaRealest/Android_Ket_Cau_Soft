@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:paddingHorizontal="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+        android:background="@drawable/roundcorner"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2dp"
+            android:text="@string/txt_signup_succesfully"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="2dp"
+            android:text="@string/txt_signup_succesfully"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_positive"
+                android:textAllCaps="false"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green"
+                android:fontFamily="sans-serif"
+                android:text="@string/txt_ok"
+                android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_negative"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/green"
+                android:fontFamily="sans-serif"
+                android:text="@string/txt_no"
+                android:textSize="16sp" />
+
+        </TableRow>
+    </LinearLayout>

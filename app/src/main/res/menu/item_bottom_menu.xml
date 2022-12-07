@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/menu_home"
+    android:icon="@drawable/ic_home_normal"
+    android:title="Chính"
+    />
+
+    <item android:id="@+id/menu_lesson"
+    android:icon="@drawable/ic_lession_normal"
+    android:title="Khóa học"
+    />
+
+   <item android:id="@+id/menu_notification"
+    android:icon="@drawable/ic_notification_normal"
+    android:title="Thông báo"
+    />
+   <item android:id="@+id/menu_setting"
+    android:icon="@drawable/ic_setting_normal"
+    android:title="Cài đặt"
+    />
+
+
+
+
+</menu>

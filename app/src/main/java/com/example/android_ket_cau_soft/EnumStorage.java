@@ -1,0 +1,59 @@
+package com.example.android_ket_cau_soft;
+
+public enum EnumStorage {
+
+    //checking valid pw and email
+    EMAIL_ERROR("EMAIL_ERROR"),
+    PASSWORD_ERROR("PASSWORD_ERROR"),
+    CONFIRM_PASSWORD_ERROR("CONFIRM_PASSWORD_ERROR"),
+    NAME_ERROR("NAME_ERROR"),
+
+
+    //menu fragment
+    MENU_HOME("HOME"),
+
+    MENU_LESSON("LESSON"),
+
+    MENU_NOTIFICATION("NOTIFICATION"),
+
+    MENU_SETTING("SETTING"),
+
+
+    EMAIL_PATH("@gmail.com"),
+
+
+    SUCCESS("SUCCESS"),
+
+    //request
+    LOGIN_REQUEST("LOGIN_REQUEST"),
+    RESET_PASSWORD_REQUEST("RESET_PASSWORD_REQUEST"),
+    SIGN_UP_REQUEST("SIGN_UP_REQUEST"),
+    HOTNEWS_REQUEST("HOTNEWS_REQUEST"),
+    HOTCOURSE_REQUEST("HOTCOURSE_REQUEST"),
+    NEWCOURSE_REQUEST("NEWCOURSE_REQUEST"),
+    DETAILCOURSE_REQUEST("DETAILCOURSE_REQUEST"),
+    SAVE_USER_INFO("SAVE_USER_INFO"),
+    CHECK_TOKEN("CHECK_TOKEN"),
+    LOG_OUT("LOG_OUT"),
+    GET_NOTIFICATION("GET_NOTIFICATION"),
+    MARK_AS_READ("MARK_AS_READ"),
+    GET_TOPIC("GET_TOPIC"),
+    GET_DETAIL_BY_TOPIC("GET_DETAIL_BY_TOPIC"),
+    GET_MY_COURSE("GET_MY_COURSE"),
+    GET_DETAIL_LESSON("GET_DETAIL_LESSON"),
+    GET_EXAM_QUESTION("GET_EXAM_QUESTION"),
+
+    //response
+    SIGN_UP_SUCCESS("SIGN_UP_SUCCESS");
+
+    private final String enumValue;
+
+    EnumStorage(String enumVal) {
+        this.enumValue = enumVal;
+
+    }
+
+    public String getEnumValue() {
+        return enumValue;
+    }
+}

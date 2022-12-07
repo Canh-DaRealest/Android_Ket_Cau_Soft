@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="textField">
+        //mau hint text khi duoc focus
+        <item name="hintTextColor">@color/green</item>
+        //mau con tro van ban
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="marginHorizontal">15dp</item>
+        <!--        <item name="boxCornerRadiusTopEnd">10dp</item>-->
+        <!--        <item name="boxCornerRadiusTopStart">10dp</item>-->
+        <item name="errorEnabled">true</item>
+        <item name="boxStrokeColor">@color/green</item>
+        <item name="labelStyle">@color/green</item>
+        <item name="errorTextColor">@color/red</item>
+
+    </style>
+
+    <style name="errorText" parent="android:Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">14sp</item>
+
+
+    </style>
+
+    <style name="Rounded" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="edittext" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
+
+    <style name="button" parent="TextAppearance.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="marginHorizontal">30dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="backgroundTint">@color/green</item>
+        <item name="cornerRadius">15dp</item>
+
+    </style>
+
+    <style name="materialsRipple">
+
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="rippleColor">#E68BDA91</item>
+        <item name="mrl_rippleDuration">200</item>
+        <item name="mrl_rippleFadeDuration">75</item>
+        <item name="mrl_rippleHover">true</item>
+    </style>
+
+
+    <style name="lineView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#DAD5D5</item>
+    </style>
+
+
+    <style name="radioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">sans-serif-light</item>
+    </style>
+
+</resources>

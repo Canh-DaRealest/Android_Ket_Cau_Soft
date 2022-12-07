@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ln_item_lesson"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp">
+
+
+    <TextView
+        android:id="@+id/tv_item_lesson_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="10dp"
+        android:drawablePadding="5dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
+        android:text="Bài 1: Thiết kế mái thép"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:drawableStartCompat="@drawable/ic_play" />
+
+</LinearLayout>

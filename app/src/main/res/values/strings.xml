@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Kết Cấu SoftAndroid</string>
+    <string name="txt_hello">Xin chào</string>
+    <string name="please_login_to_continue">Vui lòng đăng nhập để tiếp tục</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_password">Mật khẩu</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="txt_bt_login">Đăng nhập</string>
+    <string name="dont_have_account">Bạn chưa có tài khoản?</string>
+    <string name="txt_sign_up">Đăng ký</string>
+    <string name="txt_sign_up_name">Tên hiển thị</string>
+    <string name="txt_retype_password">Nhập lại mật khẩu</string>
+    <string name="txt_bt_sign_up">Đăng ký</string>
+    <string name="have_account">Bạn đã có tài khoản?</string>
+    <string name="txt_signup_succesfully">Bạn đã đăng ký thành công</string>
+    <string name="txt_ok">Ok</string>
+    <string name="txt_no">No</string>
+    <string name="send">Gửi</string>
+    <string name="fogot_pass">Quên mật khẩu</string>
+    <string name="enter_opt_code">Nhập mã OTP</string>
+    <string name="otp_willbe_send">Mã OTP sẽ được gửi đến email của bạn</string>
+    <string name="txt_resend_otp">Gửi lại mã OTP(00:29)</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="txt_new_password">Mật khẩu mới</string>
+    <string name="txt_old_password">Mật khẩu cũ</string>
+    <string name="reenter_password">Nhập lại mật khẩu</string>
+    <string name="review">Mô tả khóa học</string>
+    <string name="content">Etabs là một cỗ máy vận hành đều đặn, không mệt mỏi, không nóng giận, không có lý trí riêng, và không thiên vị bất cứ ai. Điều đó có nghĩa rằng chính chúng ta sẽ là người tác động lên Etabs, tạo ra kết quả, hình thành nên những đúng đắn hay những sai lầm của kết quả đó. Chính vì lẽ đó, để có được một kết quả đúng, hãy chắc chắn rằng chúng ta đã xây dựng được một mô hình đúng, gán tải trọng đúng, thiết lập những tham số đúng. Khóa học này là tập hợp những kinh nghiệm của tác giả trong quá trình sử dụng Etabs, những kiến thức mà tác giả cho rằng người dùng cần có để vận hành Etabs.</string>
+    <string name="txt_setting">Cài đặt</string>
+    <string name="txt_ls_content">Link download bản miễn ph; Visual Studio 2022 tr;n trang chủ;Microsoft="https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Communityrel=17\">https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Communityrel=17Link để xem hướng dẫn lập t;nh AutoCAD.NET;"https://forum.ketcausoft.com/forumdisplay.php?fid=31\">https://forum.ketcausoft.com/forumdisplay.php?fid=31</string>
+    <string name="txt_terms_policy">Chính sách điều khoản</string>
+    <string name="txt_personal_info">Thông tin cá nhân</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="txt_logout">Đăng xuất</string>
+    <string name="example_ques">Theo quy định của pháp luật về xây dựng, công trình xây dựng được phân cấp phục vụ quản lý hoạt động đầu tư xây dựng trên cơ sở các căn cứ nào?</string>
+    <string name="example_answ_a">a. Quy mô, mức độ quan trọng, thông số kỹ thuật của công trình</string>
+    <string name="example_answ_b">b. Thời hạn sử dụng, vật liệu</string>
+    <string name="example_answ_c">c. Yêu cầu xây dựng công trình</string>
+    <string name="example_answ_d">d. Tất cả các căn cứ trên</string>
+</resources>

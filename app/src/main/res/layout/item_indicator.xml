@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/circleIndiCator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:padding="10dp"
+        app:ci_drawable="@color/dark_green"
+        app:ci_drawable_unselected="@color/dark_white"
+        app:ci_gravity="center"
+        app:ci_height="5dp"
+        app:ci_margin="15dp"
+        app:ci_orientation="horizontal"
+        app:ci_width="5dp" />
+
+</FrameLayout>

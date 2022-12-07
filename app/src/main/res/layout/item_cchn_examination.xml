@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingVertical="10dp"
+        android:text="Sát hạch chứng chỉ hành nghề"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <View style="@style/lineView" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Vui lòng chọn loại bài thi:"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="30dp">
+
+
+        <TextView
+            android:id="@+id/tv_full_exam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:drawableEnd="@drawable/ic_next"
+            android:fontFamily="sans-serif-light"
+            android:paddingHorizontal="20dp"
+            android:text="Bài thi đầy đủ"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_halft_exam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_next"
+            android:fontFamily="sans-serif-light"
+            android:paddingHorizontal="20dp"
+            android:text="Bài thi phần luật"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>
