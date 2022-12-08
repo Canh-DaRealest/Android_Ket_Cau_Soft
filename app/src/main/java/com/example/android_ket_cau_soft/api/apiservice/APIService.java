@@ -14,6 +14,7 @@ import com.example.android_ket_cau_soft.api.response.họmefrgres.news.HotNewsRe
 import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.MarkAsReadedResponse;
 import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.NotificationResponse;
 import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.CheckTokenResponse;
+import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.GetConfigResponse;
 import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.LogoutResponse;
 import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.SaveInfoResponse;
 import com.example.android_ket_cau_soft.api.response.loginresponse.LoginResponse;
@@ -108,4 +109,7 @@ public interface APIService {
 
     @GET("get-tracuu-solieutunhien")
     Call<GetLNaturalDataResponse> getNaturalData();
+
+    @GET("get-config-info")
+    Call<GetConfigResponse> getConfig();
 }

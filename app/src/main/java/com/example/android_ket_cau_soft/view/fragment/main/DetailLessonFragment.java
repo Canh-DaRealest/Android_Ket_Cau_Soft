@@ -46,13 +46,13 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
 
         ItemLesson itemLesson = (ItemLesson) intentResult.getData();
         Log.i(TAG, "initView: " + itemLesson.getName());
-        mBinding.includeDetailLesson.tvBackText.setText(name);
+
         mViewModel.setItemLesson(itemLesson);
 
 
         mBinding.btNextLeson.setOnClickListener(this);
         mBinding.btPreviousLesson.setOnClickListener(this);
-        mBinding.includeDetailLesson.ivBack.setOnClickListener(this);
+
 
         if (mViewModel.getAccount() != null) {
 

@@ -33,8 +33,6 @@ public class ExaminationFragment extends BaseFragment<FragmentExaminationBinding
     protected void initView() {
 
         updateRadiobuttonlist();
-        mBinding.includeItemBack.tvBackText.setText("Ôn tập sát hạch CCHN thiết kế kết cấu");
-        mBinding.includeItemBack.ivBack.setOnClickListener(this);
         mBinding.btSubmit.setOnClickListener(this);
 
         mViewModel.setExamType((int) mData);

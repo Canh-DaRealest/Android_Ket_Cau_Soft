@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fr_signup_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".view.activity.LoginActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:backgroundTint="@color/dark_green"
+        android:background="@drawable/bg_background_intro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <com.airbnb.lottie.LottieAnimationView
@@ -57,8 +68,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_field_password"
             style="@style/textField"
-            android:hint="@string/txt_password"
-         >
+            android:hint="@string/txt_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_password"
@@ -72,14 +82,13 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/text_field_retype_password"
             style="@style/textField"
-            android:hint="@string/txt_retype_password"
-        >
+            android:hint="@string/txt_retype_password">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_retype_password"
                 style="@style/edittext"
-                android:imeOptions="actionDone"
                 android:autofillHints="password"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -90,8 +99,9 @@
             style="@style/button"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="@color/blue"
             android:text="@string/txt_bt_sign_up"
+            android:textColor="@color/white"
             app:cornerRadius="10dp" />
 
         <FrameLayout
@@ -124,7 +134,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="sans-serif"
                         android:text="@string/txt_bt_login"
-                        android:textColor="@color/green"
+                        android:textColor="@color/blue"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -143,4 +153,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

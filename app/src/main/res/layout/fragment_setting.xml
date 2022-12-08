@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ln_frg_login"
@@ -8,43 +8,37 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-   <LinearLayout
-       android:orientation="vertical"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-
-
-       <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_marginStart="15dp"
-           android:layout_marginTop="30dp"
-           android:fontFamily="sans-serif-light"
-      android:paddingVertical="15dp"
-           android:text="@string/txt_setting"
-           android:textColor="@color/black"
-           android:textSize="16sp" />
-
-       <View style="@style/lineView" />
-
-   </LinearLayout>
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/bg_top_background2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="vertical">
+        android:background="@drawable/bg_bottom_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        <View style="@style/lineView" />
-
-        <com.balysv.materialripple.MaterialRippleLayout style="@style/materialsRipple">
+        <com.balysv.materialripple.MaterialRippleLayout
+            style="@style/materialsRipple"
+            android:layout_marginTop="50dp">
 
             <TableRow
                 android:id="@+id/tr_personal_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:paddingVertical="15dp">
 
 
@@ -65,6 +59,7 @@
                     android:layout_height="match_parent"
                     android:paddingHorizontal="20dp"
                     android:src="@drawable/ic_next"
+                    app:tint="@color/black"
                     tools:ignore="contentDescription" />
 
             </TableRow>
@@ -80,7 +75,6 @@
                 android:id="@+id/tr_change_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:paddingVertical="15dp">
 
 
@@ -102,6 +96,7 @@
                     android:layout_height="match_parent"
                     android:paddingHorizontal="20dp"
                     android:src="@drawable/ic_next"
+                    app:tint="@color/black"
                     tools:ignore="contentDescription" />
 
             </TableRow>
@@ -116,7 +111,6 @@
                 android:id="@+id/tr_terms_policy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
                 android:paddingVertical="15dp">
 
 
@@ -137,6 +131,43 @@
                     android:layout_height="match_parent"
                     android:paddingHorizontal="20dp"
                     android:src="@drawable/ic_next"
+                    app:tint="@color/black"
+                    tools:ignore="contentDescription" />
+
+            </TableRow>
+        </com.balysv.materialripple.MaterialRippleLayout>
+
+        <View style="@style/lineView" />
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            style="@style/materialsRipple">
+
+
+            <TableRow
+                android:id="@+id/tr_get_config"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="15dp">
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-light"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="15dp"
+                    android:text="Thông tin về chúng tôi "
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="20dp"
+                    android:src="@drawable/ic_next"
+                    app:tint="@color/black"
                     tools:ignore="contentDescription" />
 
             </TableRow>
@@ -145,16 +176,17 @@
         <View style="@style/lineView" />
 
 
+        <Button
+            android:id="@+id/bt_log_out"
+            style="@style/button"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/txt_logout"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
     </LinearLayout>
 
-    <Button
-        android:id="@+id/bt_log_out"
-        style="@style/button"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/txt_logout"
-        android:textColor="@color/white"
-        android:textStyle="bold" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

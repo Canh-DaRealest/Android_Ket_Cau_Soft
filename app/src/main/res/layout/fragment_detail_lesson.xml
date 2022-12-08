@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/include_detail_lesson"
-        layout="@layout/item_back_actionbar" />
+
 
     <FrameLayout
         android:layout_width="match_parent"

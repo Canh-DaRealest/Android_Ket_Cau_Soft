@@ -145,9 +145,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
 
         if (key.equals(EnumStorage.HOTNEWS_REQUEST.getEnumValue())) {
 
-            mBinding.includeItemType1.tvType.setVisibility(View.GONE);
-            mBinding.includeItemType1.ivIconType.setVisibility(View.GONE);
-            mBinding.includeItemType1.tvSeeMore.setVisibility(View.GONE);
 
             NewsData[] mData = (NewsData[]) data;
             mViewModel.setNewsDataList(mData);

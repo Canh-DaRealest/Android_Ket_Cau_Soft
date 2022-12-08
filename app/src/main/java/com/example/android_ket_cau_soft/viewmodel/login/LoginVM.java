@@ -81,7 +81,8 @@ public class LoginVM extends BaseVM {
             Log.e(TAG, "showMainActivity: LoginFragment: " + account.toString());
             App.getInstance().getAppDb().getUserDAO().updateUser(newUser);
         }
-        setAccount(newUser);
-        Log.i(TAG, "updateUserAccount: "+account.toString());
+        //  setAccount(newUser);
+        account = newUser;
+        Log.i(TAG, "updateUserAccount: " + account.toString());
     }
 }

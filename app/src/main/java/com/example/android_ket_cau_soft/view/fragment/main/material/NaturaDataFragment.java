@@ -44,7 +44,6 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
     @Override
     protected void initView() {
 
-        mBinding.includeNatureBack.ivBack.setOnClickListener(this);
         mViewModel.getNaturalData();
 
     }
@@ -78,7 +77,7 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
     private void updateData(String msg, List<NaturalData> lData) {
         mBinding.tvNature1.setOnClickListener(this);
         mBinding.tvNature2.setOnClickListener(this);
-        mBinding.includeNatureBack.tvBackText.setText(msg);
+
 
         mBinding.tvNature1.setText(lData.get(0).getAddress_1());
         mBinding.tvNature2.setText(lData.get(0).getNaturalData1List().get(0).getAddress_2());

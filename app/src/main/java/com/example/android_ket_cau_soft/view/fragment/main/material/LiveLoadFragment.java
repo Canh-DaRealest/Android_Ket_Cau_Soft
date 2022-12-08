@@ -42,7 +42,7 @@ public class LiveLoadFragment extends BaseFragment<FragmentLiveLoadBinding, Live
     @Override
     protected void initView() {
 
-        mBinding.includeMaterialBack.ivBack.setOnClickListener(this);
+
         mViewModel.getLiveLoadData();
 
     }
@@ -76,7 +76,7 @@ public class LiveLoadFragment extends BaseFragment<FragmentLiveLoadBinding, Live
     private void updateData(String msg, List<LiveLoadData> lData) {
         mBinding.tvLiveload1.setOnClickListener(this);
         mBinding.tvLiveload2.setOnClickListener(this);
-        mBinding.includeMaterialBack.tvBackText.setText(msg);
+
 
         mBinding.tvLiveload1.setText(lData.get(0).getAddress_1());
         mBinding.tvLiveload2.setText(lData.get(0).getLiveLoadData2List().get(0).getAddress_2());

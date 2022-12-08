@@ -41,6 +41,7 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
         mBinding.trPersonalInfo.setOnClickListener(this);
         mBinding.trChangePassword.setOnClickListener(this);
         mBinding.trTermsPolicy.setOnClickListener(this);
+        mBinding.trGetConfig.setOnClickListener(this);
         mBinding.btLogOut.setOnClickListener(this);
     }
 
@@ -61,7 +62,14 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
         } else if (v.getId() == R.id.bt_log_out) {
 
             dosignOut();
+        } else if (v.getId() == R.id.tr_get_config) {
+            showInfor();
+
         }
+    }
+
+    private void showInfor() {
+        onParentFrgCallback.showFragmentFromMenu(GetConfigFragment.TAG, null, true);
     }
 
     private void dosignOut() {
@@ -89,6 +97,7 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
         super.onCallbackSuccess(key, msg, data);
         if (key.equals(EnumStorage.LOG_OUT.getEnumValue())) {
             CustomSharePreference.getInstance().saveBooleanValue(CustomSharePreference.LOGIN_STATE, false);
+            mViewModel.deleteAccount();
             onParentFrgCallback.showFragmentFromMenu(LoginFragment.TAG, null, false);
         }
     }

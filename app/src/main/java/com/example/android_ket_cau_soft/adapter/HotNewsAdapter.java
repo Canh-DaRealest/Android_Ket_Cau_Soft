@@ -91,7 +91,7 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             recyclerViewHolder.name.setText(data.getName());
 
             recyclerViewHolder.time.setText(time);
-            recyclerViewHolder.layout.setBackgroundColor(data.getReaded() ? context.getColor(R.color.white) : context.getColor(R.color.color_hot_news));
+            recyclerViewHolder.layout.setBackgroundColor(data.getReaded() ? context.getColor(R.color.white) : context.getColor(R.color.light_green));
             recyclerViewHolder.bell.setImageResource(data.getReaded() ? R.drawable.ic_bell_readed : R.drawable.ic_bell_new);
             recyclerViewHolder.layout.setOnClickListener(new View.OnClickListener() {
                 @Override

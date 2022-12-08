@@ -31,7 +31,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
-        appDb = Room.databaseBuilder(this, AppDb.class, "accountData").allowMainThreadQueries().build();
+        appDb = Room.databaseBuilder(this, AppDb.class, "mAccountData").allowMainThreadQueries().build();
         instance = this;
         storage = new Storage();
     }

@@ -75,7 +75,7 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
 
     private void clickItems() {
         mBinding.btSave.setOnClickListener(this);
-        mBinding.changePersonalActionBar.ivBack.setOnClickListener(this);
+
         mBinding.texfieldUpdateBirthday.setOnClickListener(this);
         mBinding.edtUpdateBirthday.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

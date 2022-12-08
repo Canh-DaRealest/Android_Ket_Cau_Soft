@@ -42,7 +42,6 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
     @Override
     protected void initView() {
 
-        mBinding.includeMaterialBack.ivBack.setOnClickListener(this);
         mViewModel.getRawMaterialData();
 
     }
@@ -75,8 +74,7 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
 
     private void updateData(String msg, List<RawMaterialData> lData) {
         mBinding.tvRawMaterial1.setOnClickListener(this);
-        mBinding.tvRawMaterial2.setOnClickListener(this);
-        mBinding.includeMaterialBack.tvBackText.setText(msg);
+
 
         mBinding.tvRawMaterial1.setText(lData.get(0).getAddress_1());
         mBinding.tvRawMaterial2.setText(lData.get(0).getLiveLoadData1List().get(0).getAddress_2());

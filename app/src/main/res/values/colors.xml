@@ -10,8 +10,10 @@
     <color name="dark_white">#363535</color>
     <color name="red">#F44336</color>
     <color name="blue">#162370</color>
+    <color name="light_blue">#2196F3</color>
     <color name="green">#4CAF50</color>
-    <color name="dark_green">#4CAF50</color>
+    <color name="dark_green">#088A2D</color>
+    <color name="light_green">#A5D6A7</color>
     <color name="gray_light">#828282</color>
     <color name="color_menu_selected">#3BB143</color>
     <color name="color_menu_normal">#787878</color>

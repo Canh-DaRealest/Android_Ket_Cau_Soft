@@ -5,7 +5,6 @@
     android:id="@+id/ln_frg_login"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@color/white"
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
@@ -23,7 +22,9 @@
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back" />
+
+            android:src="@drawable/ic_back"
+            app:tint="@color/white" />
 
         <TextView
             android:id="@+id/tv_back_text"
@@ -32,7 +33,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical"
             android:text="@string/fogot_pass"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
     </TableRow>
