@@ -3,12 +3,14 @@ package com.example.android_ket_cau_soft.view.fragment.main;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.example.android_ket_cau_soft.R;
-import com.example.android_ket_cau_soft.adapter.CourseAdapterRecyclerView;
+import com.example.android_ket_cau_soft.adapter.CourseAdapter;
 import com.example.android_ket_cau_soft.databinding.ListCourseFragmentBinding;
 import com.example.android_ket_cau_soft.model.CourseData;
 import com.example.android_ket_cau_soft.model.ObjectResult;
@@ -20,7 +22,7 @@ import java.util.List;
 
 public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding, CommonVM> implements SwipeRefreshLayout.OnRefreshListener {
     public static final String TAG = ListlCourseFragment.class.getName();
-    private CourseAdapterRecyclerView courseAdapterRecyclerView;
+    private CourseAdapter courseAdapter;
 
     @Override
     protected Class<CommonVM> getClassVM() {
@@ -45,13 +47,14 @@ public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding,
     private void initData() {
         ObjectResult result = (ObjectResult) mData;
         mBinding.includeDetailCourse.tvBackText.setText(result.getName());
-        courseAdapterRecyclerView = new CourseAdapterRecyclerView(mContext, (List<CourseData>) result.getListData());
+        courseAdapter = new CourseAdapter(mContext, (List<CourseData>) result.getListData());
+        courseAdapter.setRvType(CourseAdapter.TYPE_GRID);
         mBinding.rvDetail.setLayoutManager(new GridLayoutManager(mContext, 2));
-        mBinding.rvDetail.setAdapter(courseAdapterRecyclerView);
-        courseAdapterRecyclerView.getLiveData().observe(this, new Observer<CourseData>() {
+        mBinding.rvDetail.setAdapter(courseAdapter);
+        courseAdapter.getLiveData().observe(this, new Observer<String>() {
             @Override
-            public void onChanged(CourseData courseData) {
-                mainCallBack.showFragment(DetailCourseFragment.TAG, courseData.getId()+"", true);
+            public void onChanged(String s) {
+                mainCallBack.showFragment(DetailCourseFragment.TAG, s, true);
             }
         });
 
@@ -64,6 +67,7 @@ public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding,
             @Override
             public void run() {
                 if (mBinding.slSwipeRefreshLayoutDetail.isRefreshing()) {
+                    Toast.makeText(mContext, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                     mBinding.slSwipeRefreshLayoutDetail.setRefreshing(false);
                 }
 

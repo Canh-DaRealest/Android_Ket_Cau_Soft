@@ -10,7 +10,6 @@ import android.widget.MediaController;
 import com.bumptech.glide.Glide;
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.R;
-import com.example.android_ket_cau_soft.adapter.CourseAdapterRecyclerView;
 import com.example.android_ket_cau_soft.adapter.ItemLessonPathAdapter;
 import com.example.android_ket_cau_soft.databinding.FragmentDetailLessonBinding;
 import com.example.android_ket_cau_soft.model.DetailLessonData;
@@ -26,7 +25,7 @@ import java.util.Objects;
 
 public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBinding, DetailLessonVM> {
     public static final String TAG = DetailLessonFragment.class.getName();
-    private CourseAdapterRecyclerView courseAdapterRecyclerView;
+
 
     @Override
     protected Class<DetailLessonVM> getClassVM() {
@@ -86,7 +85,7 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
             ctlr.setMediaPlayer(mBinding.videoView);
             mBinding.videoView.setMediaController(ctlr);
             setOnRepaireVideo();
-
+            setOnErroVideo();
             //   mBinding.videoView.setZOrderOnTop(true);
 
         }
@@ -105,6 +104,25 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
         });
     }
 
+    private void setOnErroVideo() {
+        mBinding.videoView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+            @Override
+            public boolean onError(MediaPlayer mp, int what, int extra) {
+
+                getNoticeDialog(mContext).setUpDialog(" Thông báo", "Error: " + what + ", " + extra, "Ok", null, true, new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dismissNoticeDialog();
+                        backToPreviousFragment();
+                    }
+                });
+                showNoticeDialog();
+                return true;
+            }
+        });
+    }
+
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
@@ -119,8 +137,10 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
                 }
             });
             showNoticeDialog();
+        } else {
+            showSnackbar(mBinding.lnLessonDetail, msg, true);
         }
-        showSnackbar(mBinding.lnLessonDetail, msg, true);
+
     }
 
     private String formatTime(int timeInSecond) {

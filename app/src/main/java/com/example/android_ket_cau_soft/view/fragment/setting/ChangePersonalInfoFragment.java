@@ -154,6 +154,7 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
         boolean validPhoneNum = checkValidatePhoneNumber(mBinding.edtUpdatePhone.getText().toString().trim());
 
         if (!state && validPhoneNum) {
+            mViewModel.getAccount().setSdt(mBinding.edtUpdatePhone.getText().toString().trim());
             showProgressDialog();
             Log.i(TAG, "doSavingInfo: ChangePersonalInfo: " + state + mViewModel.getAccount().toString());
             mViewModel.checkUserToken(mViewModel.getAccount().getEmail(), mViewModel.getAccount().getApiToken());
@@ -193,7 +194,7 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
 
             mViewModel.setAccount(new User(userData.getEmail(), mViewModel.getAccount().getPassword(), userData.getApiToken(), userData.getName(), userData.getImage(), userData.getSdt(), userData.getBirthday(), userData.getVipMember()));
             Log.e(TAG, "onCheckingSuccess: ChangePersonalInfo " + mViewModel.getAccount().toString());
-
+            mViewModel.updateAccountFromDB();
             setUiEdittext(mViewModel.getAccount());
             showSnackbar(mBinding.lnFrgSaveUser, msg, false);
         }

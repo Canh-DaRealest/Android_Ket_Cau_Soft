@@ -58,7 +58,7 @@
             android:id="@+id/text_field_password"
             style="@style/textField"
             android:hint="@string/txt_password"
-            app:endIconMode="password_toggle">
+         >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_password"
@@ -73,7 +73,7 @@
             android:id="@+id/text_field_retype_password"
             style="@style/textField"
             android:hint="@string/txt_retype_password"
-            app:endIconMode="password_toggle">
+        >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edt_retype_password"

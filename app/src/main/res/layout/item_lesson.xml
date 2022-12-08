@@ -16,12 +16,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="10dp"
-        android:drawablePadding="5dp"
+        android:drawablePadding="10dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center_vertical"
         android:text="Bài 1: Thiết kế mái thép"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        android:textSize="16sp"
         app:drawableStartCompat="@drawable/ic_play" />
 
 </LinearLayout>

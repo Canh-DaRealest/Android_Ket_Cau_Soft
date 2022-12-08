@@ -109,7 +109,6 @@
             android:id="@+id/texfield_update_birthday"
             style="@style/textField"
             android:hint="Ngày sinh"
-            app:endIconMode="clear_text"
             app:errorEnabled="false"
             app:errorTextColor="@color/red">
 

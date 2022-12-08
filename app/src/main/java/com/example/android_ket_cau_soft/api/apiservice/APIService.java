@@ -1,7 +1,6 @@
 package com.example.android_ket_cau_soft.api.apiservice;
 
 
-import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.api.request.CheckTokenReques;
 import com.example.android_ket_cau_soft.api.request.LoginRequest;
 import com.example.android_ket_cau_soft.api.request.LogoutRequest;
@@ -20,6 +19,9 @@ import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.SaveIn
 import com.example.android_ket_cau_soft.api.response.loginresponse.LoginResponse;
 import com.example.android_ket_cau_soft.api.response.loginresponse.ResetPasswordResponse;
 import com.example.android_ket_cau_soft.api.response.loginresponse.SignUpResponse;
+import com.example.android_ket_cau_soft.api.response.material.GetLNaturalDataResponse;
+import com.example.android_ket_cau_soft.api.response.material.GetLiveLoadDataResponse;
+import com.example.android_ket_cau_soft.api.response.material.GetRawMaterialDataResponse;
 import com.example.android_ket_cau_soft.api.response.topic.GetEduTopicResponse;
 import com.example.android_ket_cau_soft.model.lesson.LessonResponse;
 
@@ -97,4 +99,13 @@ public interface APIService {
     Call<GetQuestionResponse> getExamQuestion(@Query("isfull") int examType);
 
 
+    @GET("get-tracuu-hoattai")
+    Call<GetLiveLoadDataResponse> getLiveLoadData();
+
+
+    @GET("get-tracuu-vatlieu")
+    Call<GetRawMaterialDataResponse> getRawMaterialData();
+
+    @GET("get-tracuu-solieutunhien")
+    Call<GetLNaturalDataResponse> getNaturalData();
 }

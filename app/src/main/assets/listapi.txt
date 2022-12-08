@@ -1,0 +1,91 @@
+
+DANH SÁCH API
+(Quản lý tài khoản là POST request, còn lại là GET)
+
+Quản lý tài khoản
+//dang ky
+Signup (post request)	https://ketcausoft.com/api/v1/signin
+4 parameter: email , name , password và password1
+
+
+Login (post request)	https://ketcausoft.com/api/v1/login
+2 parameter là email và password
+
+Logout (post request)	https://ketcausoft.com/api/v1/logout
+1 parameter là email
+
+Reset Password (post request)
+Quên mật khẩu	https://ketcausoft.com/api/v1/reset-password
+3 parameter: email , password và password1
+
+Update Info (post request)
+Đổi thông tin	https://ketcausoft.com/api/v1/update-info
+6 parameter: email , api_token , name , sdt, birthday và password1
+
+Check Token (post request) 
+trước mỗi request có yêu cầu api_token, sử dụng API này để kiểm tra xem có đang đăng nhập ở máy khác hoặc logout chưa,
+nếu trả về status = False thì chuyển sang màn hình đăng nhập 	https://ketcausoft.com/api/v1/check-token
+2 parameter là email và api_token
+
+
+
+
+
+
+App Background
+Lấy danh sách	https://ketcausoft.com/api/v1/get-app-background
+
+Config
+Lấy danh sách (zalo, hotline v.v..)	https://ketcausoft.com/api/v1/get-config-info
+
+
+
+Khóa học
+Lấy danh sách Chủ đề	https://ketcausoft.com/api/v1/get-edu-catalogs
+
+Lấy danh sách khóa học thuộc chủ đề	https://ketcausoft.com/api/v1/get-edu-catalog-courses/id
+Ví dụ: https://ketcausoft.com/api/v1/get-edu-catalog-courses/4
+
+Lấy danh sách các khóa học người dùng đang học	https://ketcausoft.com/api/v1/get-edu-courses-me?api_token=api_token
+Ví dụ: https://ketcausoft.com/api/v1/get-edu-catalog-courses-me?api_token=0c9e9e2518411abc7b4b3a11d8a1e852
+
+Lấy thông tin nội dung của khóa học
+(Click vào khóa học thì dùng cài này để lấy thông tin danh sách các bài học)	https://ketcausoft.com/api/v1/get-edu-course-info/id
+Ví dụ: https://ketcausoft.com/api/v1/get-edu-course-info/1
+
+
+Lấy nội dung của bài học
+(Click vào bài học thì dùng cài này để lấy thông tin bài học: clip, content, list các bài học khác)	https://ketcausoft.com/api/v1/get-edu-lesson-info/id?api_token=api_token
+Ví dụ: https://ketcausoft.com/api/v1/get-edu-lesson-info/189?api_token=0c9e9e2518411abc7b4b3a11d8a1e852
+
+
+Lấy danh sách khóa học mới	https://ketcausoft.com/api/v1/get-edu-courses-new
+
+Lấy danh sách khóa học hot	https://ketcausoft.com/api/v1/get-edu-courses-hot
+
+Tra cứu hoạt tải
+Danh sách	https://ketcausoft.com/api/v1/get-tracuu-hoattai
+
+
+Sát hạch CCHN
+Bộ câu hỏi đầy đủ	https://ketcausoft.com/api/v1/get-sathach-cchn?isfull=1
+Bộ câu hỏi phần luật	https://ketcausoft.com/api/v1/get-sathach-cchn?isfull=0
+
+Tin tức 
+Lấy danh sách	https://ketcausoft.com/api/v1/get-news
+
+Thông báo 
+Lấy danh sách	https://ketcausoft.com/api/v1/get-notis?api_token=api_token
+Ví dụ: https://ketcausoft.com/api/v1/get-notis?api_token=7a8da95c29489b6530449e72a4e218cc
+ 
+
+Chuyển trạng thái thành "Đã đọc"	https://ketcausoft.com/api/v1/set-notis-readed/id?api_token=api_token
+Ví dụ: https://ketcausoft.com/api/v1/set-notis-readed/30684?api_token=7a8da95c29489b6530449e72a4e218cc
+
+
+Tra cứu Vật liệu
+Danh sách	https://ketcausoft.com/api/v1/get-tracuu-vatlieu
+
+Tra cứu Số liệu tự nhiên
+Danh sách	https://ketcausoft.com/api/v1/get-tracuu-solieutunhien
+

@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.R;
-import com.example.android_ket_cau_soft.adapter.CourseAdapterRecyclerView;
 import com.example.android_ket_cau_soft.adapter.ItemLessonPathAdapter;
 import com.example.android_ket_cau_soft.databinding.DetailCourseFragmentBinding;
 import com.example.android_ket_cau_soft.model.IntentResult;
@@ -25,7 +24,7 @@ import java.util.List;
 
 public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBinding, DetailCourseVM> {
     public static final String TAG = DetailCourseFragment.class.getName();
-    private CourseAdapterRecyclerView courseAdapterRecyclerView;
+
 
     @Override
     protected Class<DetailCourseVM> getClassVM() {

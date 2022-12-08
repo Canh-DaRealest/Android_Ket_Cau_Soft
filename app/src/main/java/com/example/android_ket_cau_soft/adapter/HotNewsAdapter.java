@@ -25,8 +25,8 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List newsDataList;
     private MutableLiveData<Object> NewsliveData = new MutableLiveData<>();
     private int viewType;
-    public static final int VIEWPAGER_TYPE = 1;
-    public static final int RECYCLER_TYPE = 2;
+    public static final int HOME_TYPE = 1;
+    public static final int NOTIFICATION_TYPE = 2;
 
 
     public MutableLiveData<Object> getLiveData() {
@@ -46,26 +46,26 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == VIEWPAGER_TYPE) {
-            return new ViewPagerHolder(LayoutInflater.from(context).inflate(R.layout.item_news, parent, false));
-        } else if (viewType == RECYCLER_TYPE) {
+        if (viewType == HOME_TYPE) {
+            return new HomeViewHolder(LayoutInflater.from(context).inflate(R.layout.item_news, parent, false));
+        } else if (viewType == NOTIFICATION_TYPE) {
 
-            return new RecyclerViewHolder(LayoutInflater.from(context).inflate(R.layout.item_news_notification, parent, false));
+            return new NotificationViewHolder(LayoutInflater.from(context).inflate(R.layout.item_news_notification, parent, false));
         }
 
-        return new ViewPagerHolder(LayoutInflater.from(context).inflate(R.layout.item_news, parent, false));
+        return new HomeViewHolder(LayoutInflater.from(context).inflate(R.layout.item_news, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        if (holder.getItemViewType() == VIEWPAGER_TYPE) {
+        if (holder.getItemViewType() == HOME_TYPE) {
             List<NewsData> mDataList = (List<NewsData>) newsDataList;
             NewsData data = mDataList.get(position);
 
             String time = handleTime(data.getTime());
 
-            ViewPagerHolder viewPagerHolder = (ViewPagerHolder) holder;
+            HomeViewHolder viewPagerHolder = (HomeViewHolder) holder;
 
             viewPagerHolder.name.setText(data.getName());
 
@@ -79,14 +79,14 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             });
 
 
-        } else if (holder.getItemViewType() == RECYCLER_TYPE) {
+        } else if (holder.getItemViewType() == NOTIFICATION_TYPE) {
             List<NotifiData> mDataList = (List<NotifiData>) newsDataList;
             NotifiData data = mDataList.get(position);
 
 
             String time = handleTime(data.getTime());
 
-            RecyclerViewHolder recyclerViewHolder = (RecyclerViewHolder) holder;
+            NotificationViewHolder recyclerViewHolder = (NotificationViewHolder) holder;
 
             recyclerViewHolder.name.setText(data.getName());
 
@@ -103,7 +103,6 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             });
 
         }
-
     }
 
     private String handleTime(String time) {
@@ -155,12 +154,12 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     }
 
-    public class ViewPagerHolder extends RecyclerView.ViewHolder {
+    public class HomeViewHolder extends RecyclerView.ViewHolder {
         CardView layout;
         TextView name;
         TextView time;
 
-        public ViewPagerHolder(@NonNull View itemView) {
+        public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = itemView.findViewById(R.id.item_child_hotnews);
             name = itemView.findViewById(R.id.tv_news_name);
@@ -168,13 +167,13 @@ public class HotNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public class NotificationViewHolder extends RecyclerView.ViewHolder {
         LinearLayout layout;
         TextView name;
         TextView time;
         ImageView bell;
 
-        public RecyclerViewHolder(@NonNull View itemView) {
+        public NotificationViewHolder(@NonNull View itemView) {
             super(itemView);
             layout = itemView.findViewById(R.id.cl_contraint_notification);
             name = itemView.findViewById(R.id.tv_news_notification);

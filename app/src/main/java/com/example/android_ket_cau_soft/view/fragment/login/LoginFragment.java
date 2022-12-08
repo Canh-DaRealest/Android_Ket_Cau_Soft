@@ -51,7 +51,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
         //EnumCustom.CLEAR_TEXT.getEnumValue(), EnumCustom.PASSWORD_TEXT.getEnumValue(),
         //	onChangeEmail(mBinding.textFieldLoginEmail, mBinding.edtLoginEmail, mBinding.tvErrorLgEmail);
         onFocusChange(mBinding.textFieldLoginEmail, mBinding.edtLoginEmail, TextInputLayout.END_ICON_CLEAR_TEXT);
-        onFocusChange(mBinding.textFieldLoginPassword, mBinding.edtLoginPassword, TextInputLayout.END_ICON_CLEAR_TEXT);
+        onFocusChange(mBinding.textFieldLoginPassword, mBinding.edtLoginPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE);
     }
 
     private void setUiEdittext(User user) {

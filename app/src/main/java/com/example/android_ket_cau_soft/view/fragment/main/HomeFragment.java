@@ -5,10 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.R;
@@ -19,12 +22,20 @@ import com.example.android_ket_cau_soft.databinding.FragmentHomeBinding;
 import com.example.android_ket_cau_soft.model.CourseData;
 import com.example.android_ket_cau_soft.model.NewsData;
 import com.example.android_ket_cau_soft.model.ObjectResult;
+import com.example.android_ket_cau_soft.model.material_search.LiveLoadData;
+import com.example.android_ket_cau_soft.model.material_search.NaturalData;
+import com.example.android_ket_cau_soft.model.material_search.RawMaterialData;
 import com.example.android_ket_cau_soft.view.fragment.BaseFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.exam.ExaminationFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.material.LiveLoadFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.material.NaturaDataFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.material.RawMaterialFragment;
 import com.example.android_ket_cau_soft.viewmodel.home.HomeFragmentVM;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragmentVM> implements SwipeRefreshLayout.OnRefreshListener {
     public static final String TAG = HomeFragment.class.getName();
@@ -37,22 +48,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         this.onUpdateCountCallback = onUpdateCountCallback;
     }
 
-    private Runnable getRunnable(ViewPager2 view, List<?> list) {
-
-        return new Runnable() {
-            @Override
-            public void run() {
-                //mBinding.vpNews.vpViewpager2.getCurrentItem()    mViewModel.getNewsDataList()
-                if (view.getCurrentItem() >= list.size() - 1) {
-                    view.setCurrentItem(0);
-                } else if (view.getCurrentItem() < 0) {
-                    view.setCurrentItem(list.size() - 1);
-                } else {
-                    view.setCurrentItem(view.getCurrentItem() + 1);
-                }
-            }
-        };
-    }
 
     @Override
     protected Class<HomeFragmentVM> getClassVM() {
@@ -83,13 +78,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         if (v.getId() == R.id.iv_cchn_exam) {
             doClickExaminationCCHN();
 
-        }else if (v.getId()==R.id.iv_live_load){
+        } else if (v.getId() == R.id.iv_live_load) {
 
+            showLiveLoadFrg();
 
-        }else if (v.getId()==R.id.iv_raw_material){
+        } else if (v.getId() == R.id.iv_raw_material) {
+           showRawMaterialFragment();
 
-        }else  if (v.getId()==R.id.iv_natural_number){
-
+        } else if (v.getId() == R.id.iv_natural_number) {
+            showNaturalDataFragment();
         }
     }
 
@@ -106,16 +103,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         tvFullExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showExamFragment((int)v.getTag());
-                Log.i(TAG, "onClick: full "+v.getTag());
+                showExamFragment((int) v.getTag());
+                Log.i(TAG, "onClick: full " + v.getTag());
                 bottomSheetDialog.dismiss();
             }
         });
         tvHalftExam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showExamFragment((int)v.getTag());
-                Log.i(TAG, "onClick: halft "+v.getTag());
+                showExamFragment((int) v.getTag());
+                Log.i(TAG, "onClick: halft " + v.getTag());
                 bottomSheetDialog.dismiss();
             }
         });
@@ -141,30 +138,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         }
     }
 
-    private void autoSlide(ViewPager2 vp2Viewpager2, Runnable runnable) {
-
-        handler.postDelayed(runnable, 5000);
-
-        vp2Viewpager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                handler.removeCallbacks(runnable);
-                handler.postDelayed(runnable, 5000);
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                super.onPageScrollStateChanged(state);
-            }
-        });
-    }
 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
@@ -179,8 +152,19 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
             NewsData[] mData = (NewsData[]) data;
             mViewModel.setNewsDataList(mData);
             HotNewsAdapter adapter = new HotNewsAdapter(mContext, mViewModel.getNewsDataList());
-            adapter.setType(HotNewsAdapter.VIEWPAGER_TYPE);
-            mBinding.vpNews.vp2Viewpager2.setAdapter(adapter);
+            adapter.setType(HotNewsAdapter.HOME_TYPE);
+            mBinding.vpNews.setAdapter(adapter);
+
+            LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+            if (mBinding.vpNews.getOnFlingListener() == null) {
+                LinearLayoutManager linearLayoutMng = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
+
+                mBinding.vpNews.setLayoutManager(linearLayoutMng);
+                linearSnapHelper.attachToRecyclerView(mBinding.vpNews);
+                autoSlide(mBinding.vp2NewCourses, adapter, linearLayoutMng, 3000);
+
+            }
+
 
             adapter.getLiveData().observe(this, new Observer<Object>() {
                 @Override
@@ -192,14 +176,13 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
 
             });
 
-            autoSlide(mBinding.vpNews.vp2Viewpager2, getRunnable(mBinding.vpNews.vp2Viewpager2, mViewModel.getNewsDataList()));
+            // autoSlide(mBinding.vpNews, getRunnable(mBinding.vpNews, mViewModel.getNewsDataList()));
         } else if (key.equals(EnumStorage.GET_NOTIFICATION.getEnumValue())) {
 
             onUpdateCountCallback.updateCount(Integer.parseInt(msg));
             Log.i(TAG, "onCallbackSuccess: getnotice " + Integer.parseInt(msg));
 
-        } else {
-
+        }  else {
 
             List<CourseData> mData = (List<CourseData>) data;
 
@@ -210,7 +193,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
                 mViewModel.setHotCourseList(mData);
 
                 CourseAdapter hotCourseAdapter = new CourseAdapter(mContext, mViewModel.getHotCourseData());
-
+                hotCourseAdapter.setRvType(CourseAdapter.TYPE_AUTO_SLIDE);
                 clickBttnSeemore(mBinding.includeItemType2.tvSeeMore, new ObjectResult(msg, mViewModel.getHotCourseData()));
 
                 hotCourseAdapter.getLiveData().observe(this, new Observer<String>() {
@@ -220,9 +203,23 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
                     }
                 });
 
-                mBinding.vp2HotCourses.vp2Viewpager2.setAdapter(hotCourseAdapter);
-                mBinding.inclueIndicator1.circleIndiCator.setViewPager(mBinding.vp2HotCourses.vp2Viewpager2);
-                autoSlide(mBinding.vp2HotCourses.vp2Viewpager2, getRunnable(mBinding.vp2HotCourses.vp2Viewpager2, mViewModel.getHotCourseData()));
+                mBinding.vp2HotCourses.setAdapter(hotCourseAdapter);
+
+                LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+
+                if (mBinding.vp2HotCourses.getOnFlingListener() == null) {
+                    LinearLayoutManager linearLayoutMng = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
+                    mBinding.vp2HotCourses.setLayoutManager(linearLayoutMng);
+
+                    linearSnapHelper.attachToRecyclerView(mBinding.vp2HotCourses);
+                    autoSlide(mBinding.vp2NewCourses, hotCourseAdapter, linearLayoutMng, 4000);
+                    mBinding.inclueIndicator1.circleIndiCator.attachToRecyclerView(mBinding.vp2HotCourses, linearSnapHelper);
+
+// optional
+                    hotCourseAdapter.registerAdapterDataObserver(mBinding.inclueIndicator1.circleIndiCator.getAdapterDataObserver());
+
+                }
+
 
             } else if (key.equals(EnumStorage.NEWCOURSE_REQUEST.getEnumValue())) {
 
@@ -231,6 +228,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
                 mViewModel.setNewCourseList(mData);
 
                 CourseAdapter newCourseAdapter = new CourseAdapter(mContext, mViewModel.getNewCourseData());
+                newCourseAdapter.setRvType(CourseAdapter.TYPE_AUTO_SLIDE);
                 clickBttnSeemore(mBinding.includeItemType3.tvSeeMore, new ObjectResult(msg, mViewModel.getNewCourseData()));
                 newCourseAdapter.getLiveData().observe(this, new Observer<String>() {
                     @Override
@@ -239,15 +237,47 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
                     }
                 });
 
-                mBinding.vp2NewCourses.vp2Viewpager2.setAdapter(newCourseAdapter);
-                mBinding.inclueIndicator2.circleIndiCator.setViewPager(mBinding.vp2NewCourses.vp2Viewpager2);
-                autoSlide(mBinding.vp2NewCourses.vp2Viewpager2, getRunnable(mBinding.vp2NewCourses.vp2Viewpager2, mViewModel.getNewCourseData()));
+                mBinding.vp2NewCourses.setAdapter(newCourseAdapter);
+
+
+                LinearSnapHelper linearSnapHelper = new LinearSnapHelper();
+
+
+                if (mBinding.vp2NewCourses.getOnFlingListener() == null) {
+                    LinearLayoutManager linearLayoutMng = new LinearLayoutManager(mContext, RecyclerView.HORIZONTAL, false);
+                    mBinding.vp2NewCourses.setLayoutManager(linearLayoutMng);
+
+                    linearSnapHelper.attachToRecyclerView(mBinding.vp2NewCourses);
+                    autoSlide(mBinding.vp2NewCourses, newCourseAdapter, linearLayoutMng, 4500);
+
+                    mBinding.inclueIndicator2.circleIndiCator.attachToRecyclerView(mBinding.vp2HotCourses, linearSnapHelper);
+
+// optional
+                    newCourseAdapter.registerAdapterDataObserver(mBinding.inclueIndicator2.circleIndiCator.getAdapterDataObserver());
+
+                }
+
             }
 
 
         }
 
     }
+
+    private void showRawMaterialFragment() {
+        onParentFrgCallback.showFragmentFromMenu(RawMaterialFragment.TAG, null, true);
+    }
+
+    private void showNaturalDataFragment() {
+        onParentFrgCallback.showFragmentFromMenu(NaturaDataFragment.TAG, null, true);
+    }
+
+    private void showLiveLoadFrg() {
+
+        onParentFrgCallback.showFragmentFromMenu(LiveLoadFragment.TAG, null, true);
+
+    }
+
 
     private void showDetailCourseInfor(String courseId) {
 
@@ -258,6 +288,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
+        showSnackbar(mBinding.slHomeSwipeRefreshLayout, key + ": " + msg, true);
     }
 
     private void clickBttnSeemore(TextView tvSeeMore, ObjectResult objectResult) {
@@ -288,10 +319,34 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (mBinding.slHomeSwipeRefreshLayout.isRefreshing())
+
+                if (mBinding.slHomeSwipeRefreshLayout.isRefreshing()) {
+                    Toast.makeText(mContext, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                     mBinding.slHomeSwipeRefreshLayout.setRefreshing(false);
+                }
+
             }
         }, 1000);
+
+    }
+
+    private void autoSlide(RecyclerView recyclerView, RecyclerView.Adapter adapter, LinearLayoutManager linearLayoutManager, int delayTime) {
+
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (linearLayoutManager.findLastCompletelyVisibleItemPosition() < adapter.getItemCount() - 1) {
+                    linearLayoutManager.smoothScrollToPosition(recyclerView, new RecyclerView.State(),
+                            linearLayoutManager.findLastCompletelyVisibleItemPosition() + 1);
+                } else if (linearLayoutManager.findLastCompletelyVisibleItemPosition() >= adapter.getItemCount() - 1) {
+                    linearLayoutManager.smoothScrollToPosition(recyclerView, new RecyclerView.State(),
+                            0);
+                }
+
+            }
+        }, 0, delayTime);
 
     }
 

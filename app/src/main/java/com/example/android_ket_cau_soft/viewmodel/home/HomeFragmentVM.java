@@ -9,6 +9,9 @@ import com.example.android_ket_cau_soft.api.response.họmefrgres.news.HotNewsRe
 import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.MarkAsReadedResponse;
 import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.NotificationResponse;
 import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.CheckTokenResponse;
+import com.example.android_ket_cau_soft.api.response.material.GetLNaturalDataResponse;
+import com.example.android_ket_cau_soft.api.response.material.GetLiveLoadDataResponse;
+import com.example.android_ket_cau_soft.api.response.material.GetRawMaterialDataResponse;
 import com.example.android_ket_cau_soft.model.CourseData;
 import com.example.android_ket_cau_soft.model.NewsData;
 import com.example.android_ket_cau_soft.viewmodel.BaseVM;
@@ -37,16 +40,22 @@ public class HomeFragmentVM extends BaseVM {
             HotNewsResponse response = (HotNewsResponse) body;
 
 
-            if (response.getStatus() && response.getData() != null) {
+            if (response.getStatus()) {
 
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
+            } else {
+                onCheckingCallback.onCallbackError(key, response.getMsg());
+
             }
         } else if (key.equals(EnumStorage.HOTCOURSE_REQUEST.getEnumValue())) {
 
             CourseResponse response = (CourseResponse) body;
 
-            if (response.getStatus() && response.getData() != null) {
+            if (response.getStatus()) {
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
+            } else {
+                onCheckingCallback.onCallbackError(key, response.getMsg());
+
             }
 
         } else if (key.equals(EnumStorage.NEWCOURSE_REQUEST.getEnumValue())) {
@@ -57,21 +66,25 @@ public class HomeFragmentVM extends BaseVM {
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
             }
         } else if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            Log.i(TAG, "handleAPISuccess: CHECKTOKEN");
             CheckTokenResponse response = (CheckTokenResponse) body;
 
             if (response.getStatus()) {
-                Log.i(TAG, "handleAPISuccess: " + response.getMsg());
 
                 getNotification(account.getApiToken());
+            } else {
+                onCheckingCallback.onCallbackError(key, response.getMsg());
+
             }
 
         } else if (key.equals(EnumStorage.GET_NOTIFICATION.getEnumValue())) {
             Log.i(TAG, "handleAPISuccess: CHECKTOKEN");
             NotificationResponse response = (NotificationResponse) body;
 
-            if (response.getStatus() && response.getNotifiDataList() != null) {
+            if (response.getStatus()) {
                 onCheckingCallback.onCallbackSuccess(key, response.getUnread_num() + "", response.getNotifiDataList());
+            } else {
+                onCheckingCallback.onCallbackError(key, response.getMsg());
+
             }
 
         } else if (key.equals(EnumStorage.MARK_AS_READ.getEnumValue())) {
@@ -80,6 +93,9 @@ public class HomeFragmentVM extends BaseVM {
 
             if (response.getStatus()) {
                 onCheckingCallback.onCallbackSuccess(key, null, null);
+            } else {
+                onCheckingCallback.onCallbackError(key, response.getMsg());
+
             }
 
         }
@@ -131,9 +147,18 @@ public class HomeFragmentVM extends BaseVM {
             if (code == 401) {
                 onCheckingCallback.onCallbackError(key, "tài khoản này đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại");
             }
-        } else if (key.equals(EnumStorage.MARK_AS_READ.getEnumValue())) {
+        } else {
 
             onCheckingCallback.onCallbackError(key, message);
+
+            if (key.equals(EnumStorage.GET_LIVE_LOAD.getEnumValue())){
+                Log.e(TAG, "handleAPIFail: "+key+": "+message);
+            }else   if (key.equals(EnumStorage.GET_NATURAL_DATA.getEnumValue())){
+                Log.e(TAG, "handleAPIFail: "+key+": "+message);
+            }else   if (key.equals(EnumStorage.GET_RAW_MATERIAL.getEnumValue())){
+                Log.e(TAG, "handleAPIFail: "+key+": "+message);
+            }
+
         }
     }
 
@@ -141,4 +166,9 @@ public class HomeFragmentVM extends BaseVM {
     public void markAsReaded(Integer id) {
         getAPIService().markAsReaded(id, account.getApiToken()).enqueue(initResponeCallback(EnumStorage.MARK_AS_READ.getEnumValue()));
     }
+
+
+
+
+
 }

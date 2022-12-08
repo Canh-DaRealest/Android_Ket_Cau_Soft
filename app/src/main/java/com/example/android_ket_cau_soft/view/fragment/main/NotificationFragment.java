@@ -2,6 +2,7 @@ package com.example.android_ket_cau_soft.view.fragment.main;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -50,7 +51,7 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
 
         HotNewsAdapter adapter = new HotNewsAdapter(mContext, data);
 
-        adapter.setType(HotNewsAdapter.RECYCLER_TYPE);
+        adapter.setType(HotNewsAdapter.NOTIFICATION_TYPE);
         mBinding.rvNewsRecyclerview.setAdapter(adapter);
         mBinding.rvNewsRecyclerview.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
 
@@ -107,10 +108,11 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
                 if (
                         mBinding.swNotificationLayout.isRefreshing()
                 ) {
-
+                    Toast.makeText(mContext, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                     mBinding.swNotificationLayout.setRefreshing(false);
                 }
             }

@@ -4,6 +4,7 @@ package com.example.android_ket_cau_soft.view.fragment.main;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -137,6 +138,7 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
             @Override
             public void run() {
                 if (mBinding.slCourseTopic.isRefreshing()) {
+                    Toast.makeText(mContext, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                     mBinding.slCourseTopic.setRefreshing(false);
                 }
             }
