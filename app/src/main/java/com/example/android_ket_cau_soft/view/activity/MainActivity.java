@@ -7,6 +7,10 @@ import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.databinding.ActivityLoginBinding;
 import com.example.android_ket_cau_soft.view.fragment.SplashFragment;
 import com.example.android_ket_cau_soft.view.fragment.login.LoginFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.HomeFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.NotificationFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.TopicFragment;
+import com.example.android_ket_cau_soft.view.fragment.setting.SettingFragment;
 import com.example.android_ket_cau_soft.viewmodel.CommonVM;
 
 public class MainActivity extends BaseAct<ActivityLoginBinding, CommonVM> {
@@ -33,10 +37,12 @@ public class MainActivity extends BaseAct<ActivityLoginBinding, CommonVM> {
     @Override
     public void onBackPressed() {
         Fragment fragmentManager = getSupportFragmentManager().findFragmentById(R.id.fr_container_login);
+
         if (fragmentManager instanceof LoginFragment) {
             finish();
+
         } else {
-            super.onBackPressed();
+                super.onBackPressed();
         }
     }
 

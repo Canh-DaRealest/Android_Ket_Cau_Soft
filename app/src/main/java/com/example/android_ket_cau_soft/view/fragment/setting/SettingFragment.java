@@ -4,6 +4,8 @@ package com.example.android_ket_cau_soft.view.fragment.setting;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
+
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.databinding.FragmentSettingBinding;
@@ -31,6 +33,8 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
 
     @Override
     protected void initView() {
+
+
         mViewModel.updateAccountFromDB();
         clickItems();
 

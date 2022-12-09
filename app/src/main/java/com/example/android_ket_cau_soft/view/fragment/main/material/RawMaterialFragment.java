@@ -74,6 +74,7 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
 
     private void updateData(String msg, List<RawMaterialData> lData) {
         mBinding.tvRawMaterial1.setOnClickListener(this);
+        mBinding.tvRawMaterial2.setOnClickListener(this);
 
 
         mBinding.tvRawMaterial1.setText(lData.get(0).getAddress_1());

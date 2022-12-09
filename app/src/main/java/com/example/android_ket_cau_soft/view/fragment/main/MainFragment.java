@@ -84,9 +84,6 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainFragment
             }
         });
 
-        //thong bao cho menu item
-
-
     }
 
     private void updateNoticeCount(int count) {
