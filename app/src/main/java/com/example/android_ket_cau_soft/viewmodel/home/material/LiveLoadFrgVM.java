@@ -28,15 +28,12 @@ public class LiveLoadFrgVM extends BaseVM {
         super.handleAPISuccess(key, code, body);
 
         if (key.equals(EnumStorage.GET_LIVE_LOAD.getEnumValue())) {
-            Log.i(TAG, "handleAPISuccess: liveload ");
             GetLiveLoadDataResponse response = (GetLiveLoadDataResponse) body;
 
             if (response.getStatus()) {
-                Log.i(TAG, "handleAPISuccess: liveload true");
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
             } else {
                 onCheckingCallback.onCallbackError(key, response.getMsg());
-                Log.i(TAG, "handleAPISuccess: liveload false");
             }
 
         }

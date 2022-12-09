@@ -89,7 +89,6 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
 
         if (itemLessonPathList != null) {
 
-            Log.i(TAG, "addLesson: " + itemLessonPathList.size());
             ItemLessonPathAdapter itemLessonPathAdapter = new ItemLessonPathAdapter(mContext, itemLessonPathList);
             mBinding.rvLessonPath.setAdapter(itemLessonPathAdapter);
             mBinding.rvLessonPath.setLayoutManager(new LinearLayoutManager(mContext, RecyclerView.VERTICAL, false));

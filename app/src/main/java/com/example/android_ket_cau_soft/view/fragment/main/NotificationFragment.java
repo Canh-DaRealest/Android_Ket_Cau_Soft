@@ -90,9 +90,11 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
 
     @Override
     public void onCallbackError(String key, String msg) {
-        super.onCallbackError(key, msg);
+
         if (key.equals(EnumStorage.MARK_AS_READ.getEnumValue())) {
             showSnackbar(mBinding.swNotificationLayout, msg, true);
+        }else{
+            super.onCallbackError(key, msg);
         }
     }
 

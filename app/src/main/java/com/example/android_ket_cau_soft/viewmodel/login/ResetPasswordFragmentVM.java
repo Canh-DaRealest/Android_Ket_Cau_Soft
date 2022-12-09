@@ -63,19 +63,6 @@ public class ResetPasswordFragmentVM extends BaseVM {
 
     }
 
-    //    dismissProgressDialog();
-//                if (response.isSuccessful()) {
-//
-//        if (response.body().getStatus()) {
-//            handleSuccess(response.body());
-//        } else {
-//            showSnackbar(mBinding.lnResetMain, response.body().getMsg(), true);
-//        }
-//    } else {
-//
-//        showSnackbar(mBinding.lnResetMain, response.errorBody().toString(), true);
-//    }
-
 
     @Override
     public String getInputEmail() {

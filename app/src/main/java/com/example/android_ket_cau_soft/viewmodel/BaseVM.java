@@ -97,6 +97,7 @@ public class BaseVM extends ViewModel {
             public void onFailure(Call<T> call, Throwable t) {
 
                 handleAPIException(key, t.getMessage());
+
             }
         };
 
@@ -112,7 +113,12 @@ public class BaseVM extends ViewModel {
     }
 
     protected void handleAPIFail(String key, int code, String message) {
-        onCheckingCallback.onCallbackError(key, code + " : " + message + ", vui lòng thử lại");
+        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
+            onCheckingCallback.onCallbackError(key, code + "");
+        }else{
+            onCheckingCallback.onCallbackError(key, code + " : " + message + ", vui lòng thử lại");
+
+        }
     }
 
     protected boolean checkValidateEmail(String textEmail) {
@@ -163,7 +169,7 @@ public class BaseVM extends ViewModel {
         getAPIService().checkToken(new CheckTokenReques(email, token)).enqueue(initResponeCallback(EnumStorage.CHECK_TOKEN.getEnumValue()));
     }
 
-    protected void getNotification(String token){
+    protected void getNotification(String token) {
 
         getAPIService().getNotification(token).enqueue(initResponeCallback(EnumStorage.GET_NOTIFICATION.getEnumValue()));
     }

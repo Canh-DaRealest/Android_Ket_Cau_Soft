@@ -37,7 +37,6 @@ public class SplashFragment extends BaseFragment<FragmentSplashBinding, CommonVM
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Log.i(TAG, " splash- screen+ user has been login " + isLogin);
 
                    mainCallBack.showFragment(MainFragment.TAG, null, false);
                 }

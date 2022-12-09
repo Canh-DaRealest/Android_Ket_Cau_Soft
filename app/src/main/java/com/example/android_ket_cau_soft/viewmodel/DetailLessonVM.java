@@ -71,9 +71,7 @@ public class DetailLessonVM extends BaseVM {
     protected void handleAPIFail(String key, int code, String message) {
         super.handleAPIFail(key, code, message);
         if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())){
-            Log.e(TAG, "checkTokenFail: "+code+": "+message );
         }else if (key.equals(EnumStorage.GET_DETAIL_LESSON.getEnumValue())){
-            Log.e(TAG, "getDetaillessonFail: "+code+": "+message );
         }
 
         onCheckingCallback.onCallbackError(key, code + ": " + message);

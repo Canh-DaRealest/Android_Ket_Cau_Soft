@@ -77,7 +77,6 @@ public class HomeFragmentVM extends BaseVM {
             }
 
         } else if (key.equals(EnumStorage.GET_NOTIFICATION.getEnumValue())) {
-            Log.i(TAG, "handleAPISuccess: CHECKTOKEN");
             NotificationResponse response = (NotificationResponse) body;
 
             if (response.getStatus()) {
@@ -140,25 +139,23 @@ public class HomeFragmentVM extends BaseVM {
 
     @Override
     protected void handleAPIFail(String key, int code, String message) {
-        super.handleAPIFail(key, code, message);
 
-        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            Log.e(TAG, "handleAPIFail: CHECKTOKEN" + message + " : " + code);
-            if (code == 401) {
-                onCheckingCallback.onCallbackError(key, "tài khoản này đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại");
-            }
-        } else {
+
+//        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
+//            Log.e(TAG, "handleAPIFail: CHECKTOKEN" + message + " : " + code);
+//            if (code == 401) {
+//                Log.e(TAG, "handleAPIFail: code "+code );
+//                onCheckingCallback.onCallbackError(key, "tài khoản này đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại");
+//            }
+//        } else {
+        if (!key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
 
             onCheckingCallback.onCallbackError(key, message);
+        } else {
 
-            if (key.equals(EnumStorage.GET_LIVE_LOAD.getEnumValue())){
-                Log.e(TAG, "handleAPIFail: "+key+": "+message);
-            }else   if (key.equals(EnumStorage.GET_NATURAL_DATA.getEnumValue())){
-                Log.e(TAG, "handleAPIFail: "+key+": "+message);
-            }else   if (key.equals(EnumStorage.GET_RAW_MATERIAL.getEnumValue())){
-                Log.e(TAG, "handleAPIFail: "+key+": "+message);
-            }
-
+            super.handleAPIFail(key, code, message);
+//
+//        }
         }
     }
 
@@ -166,9 +163,6 @@ public class HomeFragmentVM extends BaseVM {
     public void markAsReaded(Integer id) {
         getAPIService().markAsReaded(id, account.getApiToken()).enqueue(initResponeCallback(EnumStorage.MARK_AS_READ.getEnumValue()));
     }
-
-
-
 
 
 }

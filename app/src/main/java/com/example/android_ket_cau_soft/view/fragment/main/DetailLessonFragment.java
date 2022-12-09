@@ -45,7 +45,6 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
         String name = (String) intentResult.getName().toString();
 
         ItemLesson itemLesson = (ItemLesson) intentResult.getData();
-        Log.i(TAG, "initView: " + itemLesson.getName());
 
         mViewModel.setItemLesson(itemLesson);
 
@@ -75,18 +74,22 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
             Uri uri = Uri.parse(url);
 
             mBinding.tvLessonName.setText(mViewModel.getCurrentLessonData().getName());
-            mBinding.lessonContent.setText(mViewModel.getCurrentLessonData().getContent());
 
             Glide.with(mContext).load(mViewModel.getCurrentLessonData().getClip_cover()).into(mBinding.ivThumnailVideo);
-            mBinding.videoView.setVideoURI(uri);
 
             MediaController ctlr = new MediaController(mContext);
             ctlr.setAnchorView(mBinding.videoView);
-            ctlr.setMediaPlayer(mBinding.videoView);
             mBinding.videoView.setMediaController(ctlr);
-            setOnRepaireVideo();
+            ctlr.setMediaPlayer(mBinding.videoView);
+            mBinding.videoView.setVideoURI(uri);
+         //   setOnRepaireVideo();
+
+            mBinding.ivThumnailVideo.setVisibility(View.GONE);
+            mBinding.videoView.setVisibility(View.VISIBLE);
+            mBinding.progressbar.setVisibility(View.GONE);
+            mBinding.videoView.start();
             setOnErroVideo();
-            //   mBinding.videoView.setZOrderOnTop(true);
+            mBinding.videoView.setZOrderOnTop(true);
 
         }
     }
@@ -98,10 +101,11 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
                 mBinding.ivThumnailVideo.setVisibility(View.GONE);
                 mBinding.videoView.setVisibility(View.VISIBLE);
                 mBinding.progressbar.setVisibility(View.GONE);
-                mp.start();
+                mBinding.videoView.start();
 
             }
         });
+
     }
 
     private void setOnErroVideo() {

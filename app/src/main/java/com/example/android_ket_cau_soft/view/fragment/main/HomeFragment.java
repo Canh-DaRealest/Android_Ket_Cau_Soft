@@ -284,8 +284,15 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
 
     @Override
     public void onCallbackError(String key, String msg) {
-        super.onCallbackError(key, msg);
-        showSnackbar(mBinding.slHomeSwipeRefreshLayout, key + ": " + msg, true);
+
+        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())){
+            super.onCallbackError(key, msg);
+        }else{
+            if (isAdded()){
+                showSnackbar(requireActivity().findViewById(R.id.sl_home_swipeRefreshLayout), key + ": " + msg, true);
+            }
+        }
+
     }
 
     private void clickBttnSeemore(TextView tvSeeMore, ObjectResult objectResult) {

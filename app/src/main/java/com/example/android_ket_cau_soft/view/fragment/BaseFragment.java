@@ -3,6 +3,7 @@ package com.example.android_ket_cau_soft.view.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -244,14 +245,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
         textView.setError(null);
     }
 
-    protected boolean isEmptyText(String text) {
-        return text.isEmpty();
-    }
 
-    protected void setCallBack() {
-
-
-    }
 
     protected void saveToPreference(String key, String stringValue) {
         CustomSharePreference.getInstance().saveStringValue(key, stringValue);
@@ -359,18 +353,25 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
 
     @Override
     public void onCallbackError(String key, String msg) {
-        dismissProgressDialog();
+    dismissProgressDialog();
         if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            getNoticeDialog(mContext).setUpDialog(" Thông báo", "Tài khoản đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại", "Ok", null, true, new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-                    dismissNoticeDialog();
-                    onParentFrgCallback.showFragmentFromMenu(LoginFragment.TAG, null, false);
-                    CustomSharePreference.getInstance().saveBooleanValue(CustomSharePreference.LOGIN_STATE, false);
-                }
-            });
-            showNoticeDialog();
+            if (msg.equals("401")) {
+                getNoticeDialog(mContext).setUpDialog(" Thông báo", "Tài khoản đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại", "Ok", null, true, new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dismissNoticeDialog();
+                        onParentFrgCallback.showFragmentFromMenu(LoginFragment.TAG, null, false);
+                        CustomSharePreference.getInstance().saveBooleanValue(CustomSharePreference.LOGIN_STATE, false);
+                    }
+                });
+                showNoticeDialog();
+
+            }else{
+                onCallbackError(key, "OOPS!!!: Đã có lỗi gì đó xảy ra");
+            }
+
         }
 
     }

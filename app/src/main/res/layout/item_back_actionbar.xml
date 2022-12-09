@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
 
             android:src="@drawable/ic_back"
-            app:tint="@color/white" />
+            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/tv_back_text"
@@ -33,7 +33,7 @@
             android:fontFamily="sans-serif-light"
             android:gravity="center_vertical"
             android:text="@string/fogot_pass"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
     </TableRow>

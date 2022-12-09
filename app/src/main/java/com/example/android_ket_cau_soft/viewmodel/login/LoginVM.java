@@ -2,6 +2,7 @@ package com.example.android_ket_cau_soft.viewmodel.login;
 
 import android.util.Log;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.example.android_ket_cau_soft.App;
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.api.request.LoginRequest;
@@ -61,6 +62,11 @@ public class LoginVM extends BaseVM {
         }
     }
 
+    @Override
+    protected void handleAPIFail(String key, int code, String message) {
+        super.handleAPIFail(key, code, message);
+        onCheckingCallback.onCallbackError(key, code+": "+message);
+    }
 
     public void updateUserAccount(UserData userData) {
 
@@ -78,11 +84,9 @@ public class LoginVM extends BaseVM {
             App.getInstance().getAppDb().getUserDAO().insertUser(newUser);
 
         } else {
-            Log.e(TAG, "showMainActivity: LoginFragment: " + account.toString());
             App.getInstance().getAppDb().getUserDAO().updateUser(newUser);
         }
         //  setAccount(newUser);
         account = newUser;
-        Log.i(TAG, "updateUserAccount: " + account.toString());
     }
 }
