@@ -22,7 +22,6 @@
             android:id="@+id/rv_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="10dp"
             tools:listitem="@layout/item_course_recyclerview" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

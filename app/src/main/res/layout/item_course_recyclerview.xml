@@ -16,14 +16,15 @@
 
     <LinearLayout
         android:paddingHorizontal="5dp"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
      >
 
         <ImageView
+            android:adjustViewBounds="true"
             android:id="@+id/iv_course_image_detail"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="95dp"
             android:src="@drawable/ic_image_8" />
 

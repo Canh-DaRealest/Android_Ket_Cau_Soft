@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="textField" >
+    <style name="textField">
         //mau hint text khi duoc focus
         <item name="hintTextColor">@color/green</item>
         //mau con tro van ban

@@ -348,7 +348,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
                     linearLayoutManager.smoothScrollToPosition(recyclerView, new RecyclerView.State(),
                             0);
                 }
-
             }
         }, 0, delayTime);
 

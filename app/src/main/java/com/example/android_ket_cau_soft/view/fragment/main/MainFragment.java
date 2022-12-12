@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -139,6 +140,22 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainFragment
         } else if (mViewModel.getCurrentFragment().equals(EnumStorage.MENU_SETTING.getEnumValue())) {
             showMenu(SettingFragment.TAG, null);
         }
+
+        //make bottomnavigation backpress perfectly
+        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+                if (!mViewModel.getCurrentFragment().equals(EnumStorage.MENU_HOME.getEnumValue())) {
+                    showMenu(HomeFragment.TAG, null);
+
+                    mViewModel.setCurrentFragment(EnumStorage.MENU_HOME.getEnumValue());
+                    mBinding.bottomNav.getMenu().getItem(0).setChecked(true);
+                }
+
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
 
     }
 
