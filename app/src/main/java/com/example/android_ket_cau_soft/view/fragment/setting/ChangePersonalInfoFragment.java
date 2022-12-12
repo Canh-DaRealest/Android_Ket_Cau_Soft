@@ -54,8 +54,8 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
             setUiEdittext(mViewModel.getAccount());
             Log.e(TAG, "initView: " + "nulll");
         }
-        onFocusChange(mBinding.textFieldUpdateName, mBinding.edtUpdateName, TextInputLayout.END_ICON_CLEAR_TEXT);
-        onFocusChange(mBinding.texfieldUpdatePhone, mBinding.edtUpdatePhone, TextInputLayout.END_ICON_CLEAR_TEXT);
+        onFocusChange(mBinding.textFieldUpdateName, mBinding.edtUpdateName, TextInputLayout.END_ICON_CLEAR_TEXT, mBinding.btSave);
+        onFocusChange(mBinding.texfieldUpdatePhone, mBinding.edtUpdatePhone, TextInputLayout.END_ICON_CLEAR_TEXT, mBinding.btSave);
 
 
         clickItems();

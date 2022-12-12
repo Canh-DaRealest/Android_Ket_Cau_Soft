@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.model.CourseData;
+import com.google.android.material.card.MaterialCardView;
 
 
 import java.util.List;
@@ -128,7 +129,7 @@ public class CourseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public class AutoSlideVieHolder
             extends RecyclerView.ViewHolder {
-        CardView cardView;
+        MaterialCardView cardView;
 
         TextView courseName;
         TextView courseMentor;
@@ -165,7 +166,7 @@ public class CourseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public class GridViewHolder extends RecyclerView.ViewHolder {
-        CardView cardView;
+        MaterialCardView cardView;
 
         TextView courseName;
         TextView courseMentor;

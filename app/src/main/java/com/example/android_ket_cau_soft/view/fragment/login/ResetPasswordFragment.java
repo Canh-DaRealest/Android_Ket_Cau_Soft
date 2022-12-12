@@ -42,9 +42,9 @@ public class ResetPasswordFragment extends BaseFragment<FragmentResetPasswordBin
         setOnEditorActionListener(mBinding.edtForgotEmail);
 
 
-        onFocusChange(mBinding.textFieldNewPassword, mBinding.edtNewPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE);
-        onFocusChange(mBinding.textFieldConfirmPassword, mBinding.edtConfirmPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE);
-        onFocusChange(mBinding.textfieldForgotEmail, mBinding.edtForgotEmail, TextInputLayout.END_ICON_CLEAR_TEXT);
+        onFocusChange(mBinding.textFieldNewPassword, mBinding.edtNewPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSend);
+        onFocusChange(mBinding.textFieldConfirmPassword, mBinding.edtConfirmPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSend);
+        onFocusChange(mBinding.textfieldForgotEmail, mBinding.edtForgotEmail, TextInputLayout.END_ICON_CLEAR_TEXT,mBinding.btSend);
 
         mBinding.btSend.setOnClickListener(this);
     }

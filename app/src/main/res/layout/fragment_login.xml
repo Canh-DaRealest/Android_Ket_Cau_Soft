@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ln_frg_login"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -62,6 +63,7 @@
             android:id="@+id/text_field_login_email"
             style="@style/textField"
             android:layout_marginTop="30dp"
+            app:hintEnabled="true"
             android:hint="@string/txt_email">
 
             <com.google.android.material.textfield.TextInputEditText

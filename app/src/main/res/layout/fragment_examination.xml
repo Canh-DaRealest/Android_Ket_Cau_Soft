@@ -57,22 +57,25 @@
             <RadioButton
                 android:id="@+id/rb_answer_a"
                 style="@style/radioButton"
-
+                android:layout_marginVertical="5dp"
                 android:text="@string/example_answ_a" />
 
             <RadioButton
                 android:id="@+id/rb_answer_b"
                 style="@style/radioButton"
+                android:layout_marginVertical="5dp"
                 android:text="@string/example_answ_b" />
 
             <RadioButton
                 android:id="@+id/rb_answer_c"
                 style="@style/radioButton"
+                android:layout_marginVertical="5dp"
                 android:text="@string/example_answ_c" />
 
             <RadioButton
                 android:id="@+id/rb_answer_d"
                 style="@style/radioButton"
+                android:layout_marginVertical="5dp"
                 android:text="@string/example_answ_d" />
 
         </RadioGroup>

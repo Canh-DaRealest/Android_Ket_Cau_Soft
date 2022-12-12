@@ -6,9 +6,13 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:background="@color/white"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:paddingHorizontal="10dp">
 
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_play" />
 
     <TextView
         android:id="@+id/tv_item_lesson_name"
@@ -21,7 +25,6 @@
         android:gravity="center_vertical"
         android:text="Bài 1: Thiết kế mái thép"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        app:drawableStartCompat="@drawable/ic_play" />
+        android:textSize="16sp" />
 
 </LinearLayout>

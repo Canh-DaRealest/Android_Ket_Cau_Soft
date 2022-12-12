@@ -24,9 +24,9 @@
         android:layout_marginHorizontal="5dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:text=""
+        android:text="Đang tải...."
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/iv_icon_type"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,8 +40,9 @@
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:text="Xem thêm"
+        android:textStyle="bold"
         android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -18,7 +18,8 @@
         app:tint="@color/dark_green" />
 
     <ImageView
-        android:layout_width="250dp"
+        android:id="@+id/iv_logo"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:src="@drawable/ic_app_logo"
@@ -27,6 +28,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Kết Cấu Soft"
+        android:textSize="25sp"
+        android:textColor="@color/gray_light"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
     <ImageView
         android:layout_width="wrap_content"

@@ -143,11 +143,11 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding, SignUpVM
     }
 
     private void handleFocus() {
-        onFocusChange(mBinding.textFieldPassword, mBinding.edtPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE);
-        onFocusChange(mBinding.textFieldRetypePassword, mBinding.edtRetypePassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE);
+        onFocusChange(mBinding.textFieldPassword, mBinding.edtPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSignUp);
+        onFocusChange(mBinding.textFieldRetypePassword, mBinding.edtRetypePassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSignUp);
 
-        onFocusChange(mBinding.textFieldEmail, mBinding.edtEmail, TextInputLayout.END_ICON_CLEAR_TEXT);
-        onFocusChange(mBinding.textFieldName, mBinding.edtName, TextInputLayout.END_ICON_CLEAR_TEXT);
+        onFocusChange(mBinding.textFieldEmail, mBinding.edtEmail, TextInputLayout.END_ICON_CLEAR_TEXT,mBinding.btSignUp);
+        onFocusChange(mBinding.textFieldName, mBinding.edtName, TextInputLayout.END_ICON_CLEAR_TEXT,mBinding.btSignUp);
     }
 
 

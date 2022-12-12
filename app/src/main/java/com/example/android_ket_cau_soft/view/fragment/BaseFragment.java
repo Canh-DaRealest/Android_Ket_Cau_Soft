@@ -33,6 +33,7 @@ import com.example.android_ket_cau_soft.view.dialog.CustomProgressDialog;
 import com.example.android_ket_cau_soft.view.dialog.NoticeDialog;
 import com.example.android_ket_cau_soft.view.fragment.login.LoginFragment;
 import com.example.android_ket_cau_soft.viewmodel.BaseVM;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -118,8 +119,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     }
 
 
-    public void onFocusChange(TextInputLayout textField, TextInputEditText edt, int endIcon) {
-
+    public void onFocusChange(TextInputLayout textField, TextInputEditText edt, int endIcon, MaterialButton button) {
 
         edt.addTextChangedListener(new TextChangeListener() {
             @Override
@@ -131,6 +131,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
 
                 } else {
                     textField.setEndIconMode(TextInputLayout.END_ICON_NONE);
+
                 }
             }
         });
