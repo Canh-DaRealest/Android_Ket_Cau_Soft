@@ -45,7 +45,6 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
     protected void initView() {
 
 
-
         if (mViewModel.getAccount() != null) {
             Log.i(TAG, "initView: ChangePersonalInfo: " + mViewModel.getAccount().toString());
             setUiEdittext(mViewModel.getAccount());
@@ -64,6 +63,7 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
     }
 
     private void setUiEdittext(User acount) {
+
         Glide.with(mContext).load(acount.getImage()).into(mBinding.cvPersonalImage);
         Log.e(TAG, "setUiEdittext: " + acount.getImage());
         mBinding.ivVipMember.setVisibility(acount.getVipMember() ? View.VISIBLE : View.GONE);
@@ -71,12 +71,14 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
         mBinding.edtUpdateName.setText(acount.getName());
         mBinding.edtUpdatePhone.setText(acount.getSdt().equals("null") ? "" : acount.getSdt());
         mBinding.edtUpdateBirthday.setText(acount.getBirthday());
+
     }
 
     private void clickItems() {
         mBinding.btSave.setOnClickListener(this);
 
         mBinding.texfieldUpdateBirthday.setOnClickListener(this);
+        mBinding.edtUpdateBirthday.setOnClickListener(this);
         mBinding.edtUpdateBirthday.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -92,10 +94,17 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
     protected void clickView(View v) {
         super.clickView(v);
         if (v.getId() == R.id.bt_save) {
-            doSavingInfo();
+            if (mViewModel.getState()) {
+                doSavingInfo();
+            } else {
+                showSnackbar(mBinding.lnFrgSaveUser, NETWORK_ER_MSG, true);
+            }
 
-        } else if (v.getId() == R.id.iv_back) {
-            backtoSettingFrg();
+        } else if (v.getId() == R.id.texfield_update_birthday) {
+            showDatePickerBottomSheet();
+        } else if (v.getId() == R.id.edt_update_birthday) {
+            hideSoftKeboard();
+            showDatePickerBottomSheet();
         }
     }
 
@@ -114,8 +123,8 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
 
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(mContext);
         bottomSheetDialog.setContentView(view);
-        bottomSheetDialog.setCanceledOnTouchOutside(false);
-        bottomSheetDialog.setCancelable(false);
+//        bottomSheetDialog.setCanceledOnTouchOutside(false);
+//        bottomSheetDialog.setCancelable(false);
         bottomSheetDialog.show();
 
         confirmBtn.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +136,7 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
                 calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
                 String currentDate = simpleDateFormat.format(calendar.getTime());
                 mBinding.edtUpdateBirthday.setText(currentDate);
+
                 hideSoftKeboard();
                 bottomSheetDialog.dismiss();
 
@@ -136,11 +146,6 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
 
     }
 
-    private void backtoSettingFrg() {
-        MainActivity homeActivity = (MainActivity) mContext;
-        homeActivity.onBackPressed();
-
-    }
 
     private void doSavingInfo() {
         hideSoftKeboard();
@@ -187,8 +192,9 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-
-        if (key.equals(EnumStorage.SAVE_USER_INFO.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.setState(true);
+        } else if (key.equals(EnumStorage.SAVE_USER_INFO.getEnumValue())) {
             //   saveToPreference(CustomSharePreference.LOGIN_STATE, true);
             UserData userData = (UserData) data;
 
@@ -203,26 +209,14 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
 
     @Override
     public void onCallbackError(String key, String msg) {
-        super.onCallbackError(key, msg);
-        if (key.equals(EnumStorage.SAVE_USER_INFO.getEnumValue())) {
-            Log.e(TAG, "onCheckingErro: ChangePersonalInfo " + msg);
-
-
+        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
+            super.onCallbackError(key, msg);
+        } else if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.setState(false);
             showSnackbar(mBinding.lnFrgSaveUser, msg, true);
-        } else if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            Log.e(TAG, "handleAPIFail: CHECKTOKEN " + msg);
+        } else {
+            showSnackbar(mBinding.lnFrgSaveUser, msg, true);
 
-            getNoticeDialog(mContext).setUpDialog(" Thông báo", "Tài khoản đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại", "Ok", null, true, new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    dismissNoticeDialog();
-
-                    mainCallBack.showFragment(LoginFragment.TAG, null, false);
-                    CustomSharePreference.getInstance().saveBooleanValue(CustomSharePreference.LOGIN_STATE, false);
-                }
-            });
-            showNoticeDialog();
         }
 
 

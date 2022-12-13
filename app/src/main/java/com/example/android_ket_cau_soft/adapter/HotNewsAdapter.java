@@ -15,7 +15,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_ket_cau_soft.R;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.NotifiData;
+import com.example.android_ket_cau_soft.api.response.notification.NotifiData;
 import com.example.android_ket_cau_soft.model.NewsData;
 
 import java.util.List;

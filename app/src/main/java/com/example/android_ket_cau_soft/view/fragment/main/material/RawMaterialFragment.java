@@ -42,7 +42,7 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
     @Override
     protected void initView() {
 
-        mViewModel.getRawMaterialData();
+
 
     }
 
@@ -50,6 +50,9 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.getRawMaterialData();
+        } else
         if (key.equals(EnumStorage.GET_RAW_MATERIAL.getEnumValue())) {
 
             rawMaterialData = (List<RawMaterialData>) data;

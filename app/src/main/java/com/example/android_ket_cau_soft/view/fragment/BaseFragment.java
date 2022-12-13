@@ -1,7 +1,10 @@
 package com.example.android_ket_cau_soft.view.fragment;
 
 import android.content.Context;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
@@ -21,6 +24,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.EnumStorage;
+import com.example.android_ket_cau_soft.broadcastreceiver.MyBroadCast;
 import com.example.android_ket_cau_soft.callback.IMainCallBack;
 import com.example.android_ket_cau_soft.callback.OnAPICallback;
 import com.example.android_ket_cau_soft.callback.OnCheckingCallback;
@@ -38,8 +42,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> extends Fragment implements View.OnClickListener, OnCheckingCallback, OnAPICallback, OnUpdateCountCallback {
+public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> extends Fragment implements View.OnClickListener, OnCheckingCallback, OnAPICallback, OnUpdateCountCallback, MyBroadCast.OnNetworkCallback {
 
+    protected static final String NETWORK_ER_MSG = "Kết nối mạng không ổn định, vui lòng thử lại";
     private static final String TAG = BaseFragment.class.getName();
     protected T mBinding;
     protected M mViewModel;
@@ -51,6 +56,8 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     protected OnParentFrgCallback onParentFrgCallback;
     protected OnUpdateCountCallback onUpdateCountCallback;
     protected OnTouchListener onTouchListener;
+    protected final Handler handler = new Handler();
+    protected MyBroadCast myBroadCast = new MyBroadCast();
 
     public void setOnTouchListener(OnTouchListener onTouchListener) {
         this.onTouchListener = onTouchListener;
@@ -62,6 +69,12 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
 
     public void setOnParentFrgCallback(OnParentFrgCallback onParentFrgCallback) {
         this.onParentFrgCallback = onParentFrgCallback;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mContext.unregisterReceiver(myBroadCast);
     }
 
     protected static NoticeDialog getNoticeDialog(Context mContext) {
@@ -178,7 +191,27 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     public final void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        checkNetworkConnection();
         initView();
+    }
+
+    protected void checkNetworkConnection() {
+        MyBroadCast.onNetworkCallback = this;
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        mContext.registerReceiver(myBroadCast, intentFilter);
+
+
+    }
+
+    @Override
+    public void returnNetworkState(boolean state) {
+        if (state) {
+            onCallbackSuccess(EnumStorage.NETWORK_STATE.getEnumValue(), "state", null);
+        } else {
+            onCallbackError(EnumStorage.NETWORK_STATE.getEnumValue(), NETWORK_ER_MSG);
+        }
     }
 
     protected abstract void initView();
@@ -245,7 +278,6 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     protected void removeError(TextInputLayout textView) {
         textView.setError(null);
     }
-
 
 
     protected void saveToPreference(String key, String stringValue) {
@@ -354,7 +386,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
 
     @Override
     public void onCallbackError(String key, String msg) {
-    dismissProgressDialog();
+        dismissProgressDialog();
         if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
 
             if (msg.equals("401")) {
@@ -369,7 +401,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
                 });
                 showNoticeDialog();
 
-            }else{
+            } else {
                 onCallbackError(key, "OOPS!!!: Đã có lỗi gì đó xảy ra");
             }
 

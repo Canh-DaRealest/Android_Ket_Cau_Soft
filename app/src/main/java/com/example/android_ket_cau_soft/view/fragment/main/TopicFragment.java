@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -40,7 +41,7 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
     @Override
     protected void initView() {
         mBinding.slCourseTopic.setOnRefreshListener(this);
-        getTopic();
+
         mBinding.tvMyCourse.setOnClickListener(this);
     }
 
@@ -61,9 +62,12 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
     }
 
     private void doClickBttMyCourse() {
-
-        mViewModel.updateAccountFromDB();
-        mViewModel.checkToken(mViewModel.getAccount().getEmail(), mViewModel.getAccount().getApiToken());
+        if (Boolean.TRUE.equals(mViewModel.getState())) {
+            mViewModel.updateAccountFromDB();
+            mViewModel.checkToken(mViewModel.getAccount().getEmail(), mViewModel.getAccount().getApiToken());
+        } else {
+            showSnackbar(mBinding.slCourseTopic, NETWORK_ER_MSG, true);
+        }
 
     }
 
@@ -74,7 +78,10 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.GET_TOPIC.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            getTopic();
+            mViewModel.setState(true);
+        } else if (key.equals(EnumStorage.GET_TOPIC.getEnumValue())) {
             List<ItemTopic> topicList = (List<ItemTopic>) data;
             CourseTopicAdapter courseTopicAdapter = new CourseTopicAdapter(mContext, topicList);
 
@@ -112,24 +119,22 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
-        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            getNoticeDialog(mContext).setUpDialog(" Thông báo", "Tài khoản đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại", "Ok", null, true, new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    dismissNoticeDialog();
-
-                    onParentFrgCallback.showFragmentFromMenu(LoginFragment.TAG, null, false);
-                    CustomSharePreference.getInstance().saveBooleanValue(CustomSharePreference.LOGIN_STATE, false);
-                }
-            });
-            showNoticeDialog();
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.setState(false);
+            showSnackbar(mBinding.slCourseTopic, msg, true);
         } else {
             showSnackbar(mBinding.slCourseTopic, msg, true);
         }
 
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mBinding.slCourseTopic.isRefreshing()) {
+            mBinding.slCourseTopic.setRefreshing(false);
+        }
+    }
 
     @Override
     public void onRefresh() {

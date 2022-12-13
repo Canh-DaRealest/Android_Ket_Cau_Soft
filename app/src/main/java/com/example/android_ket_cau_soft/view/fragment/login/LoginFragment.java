@@ -82,7 +82,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
         super.clickView(v);
 
         if (v.getId() == R.id.bt_login) {
-
             checkLogin();
         } else if (v.getId() == R.id.tv_sign_up) {
             goToSignUpScreen();
@@ -103,17 +102,22 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
 
         } else if (v.equals(mBinding.edtLoginPassword)) {
             if (actionId == EditorInfo.IME_ACTION_GO) {
-                checkLogin();
+                if (mViewModel.getState()) {
+                    checkLogin();
+                }
+
             }
         }
-
     }
 
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.setState(false);
+            showSnackbar(mBinding.lnFrgLogin, msg, true);
 
-        if (key.equals(EnumStorage.EMAIL_ERROR.getEnumValue())) {
+        } else if (key.equals(EnumStorage.EMAIL_ERROR.getEnumValue())) {
 
             showError(mBinding.textFieldLoginEmail, msg);
 
@@ -131,11 +135,19 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.LOGIN_REQUEST.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
 
-            //   saveToPreference(CustomSharePreference.LOGIN_STATE, true);
-            UserData userData = (UserData) data;
-            showMainActivity(userData);
+
+            mViewModel.setState(true);
+        } else {
+
+
+            if (key.equals(EnumStorage.LOGIN_REQUEST.getEnumValue())) {
+
+                //   saveToPreference(CustomSharePreference.LOGIN_STATE, true);
+                UserData userData = (UserData) data;
+                showMainActivity(userData);
+            }
         }
     }
 

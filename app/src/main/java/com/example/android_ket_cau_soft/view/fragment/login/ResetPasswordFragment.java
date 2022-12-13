@@ -42,9 +42,9 @@ public class ResetPasswordFragment extends BaseFragment<FragmentResetPasswordBin
         setOnEditorActionListener(mBinding.edtForgotEmail);
 
 
-        onFocusChange(mBinding.textFieldNewPassword, mBinding.edtNewPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSend);
-        onFocusChange(mBinding.textFieldConfirmPassword, mBinding.edtConfirmPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSend);
-        onFocusChange(mBinding.textfieldForgotEmail, mBinding.edtForgotEmail, TextInputLayout.END_ICON_CLEAR_TEXT,mBinding.btSend);
+        onFocusChange(mBinding.textFieldNewPassword, mBinding.edtNewPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE, mBinding.btSend);
+        onFocusChange(mBinding.textFieldConfirmPassword, mBinding.edtConfirmPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE, mBinding.btSend);
+        onFocusChange(mBinding.textfieldForgotEmail, mBinding.edtForgotEmail, TextInputLayout.END_ICON_CLEAR_TEXT, mBinding.btSend);
 
         mBinding.btSend.setOnClickListener(this);
     }
@@ -53,12 +53,14 @@ public class ResetPasswordFragment extends BaseFragment<FragmentResetPasswordBin
     protected void clickView(View v) {
         super.clickView(v);
 
-        if (v.getId() == R.id.iv_back) {
-            backToPreviousFragment();
-        } else {
+        if (v.getId() == R.id.bt_send) {
             handleEmailRequest();
-
         }
+
+    }
+
+    private void checkNetWork() {
+
 
     }
 
@@ -114,10 +116,14 @@ public class ResetPasswordFragment extends BaseFragment<FragmentResetPasswordBin
 
     @Override
     public void onCallbackError(String key, String msg) {
-        super.onCallbackError(key, msg);
-        if (key.equals(EnumStorage.RESET_PASSWORD_REQUEST.getEnumValue())) {
-            dismissProgressDialog();
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
             showSnackbar(mBinding.lnResetMain, msg, true);
+            mViewModel.setState(false);
+
+        } else if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
+
+            super.onCallbackError(key, msg);
+
         } else if (key.equals(EnumStorage.EMAIL_ERROR.getEnumValue())) {
 
             showError(mBinding.textfieldForgotEmail, msg);
@@ -130,15 +136,27 @@ public class ResetPasswordFragment extends BaseFragment<FragmentResetPasswordBin
 
             showError(mBinding.textFieldConfirmPassword, msg);
 
+        } else {
+            showSnackbar(mBinding.lnResetMain, msg, true);
         }
     }
+
 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.SUCCESS.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+
+            mViewModel.setState(true);
+        } else if (key.equals(EnumStorage.SUCCESS.getEnumValue())) {
             showProgressDialog();
-            showSnackbar(mBinding.lnResetMain, msg, false);
+            if (mViewModel.getState()) {
+                mViewModel.sendRequest();
+
+            } else {
+                showSnackbar(mBinding.lnResetMain, NETWORK_ER_MSG, true);
+            }
+
         } else if (key.equals(EnumStorage.RESET_PASSWORD_REQUEST.getEnumValue())) {
 
             dismissProgressDialog();

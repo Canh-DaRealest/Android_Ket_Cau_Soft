@@ -40,9 +40,8 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
     @Override
     protected void initView() {
 
-        IntentResult intentResult = (IntentResult) mData;
 
-        String name = (String) intentResult.getName().toString();
+        IntentResult intentResult = (IntentResult) mData;
 
         ItemLesson itemLesson = (ItemLesson) intentResult.getData();
 
@@ -53,12 +52,8 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
         mBinding.btPreviousLesson.setOnClickListener(this);
 
 
-        if (mViewModel.getAccount() != null) {
-
-            mViewModel.checkToken(mViewModel.getAccount().getEmail(), mViewModel.getAccount().getApiToken());
-        } else {
+        if (mViewModel.getAccount() == null) {
             mViewModel.updateAccountFromDB();
-            mViewModel.checkToken(mViewModel.getAccount().getEmail(), mViewModel.getAccount().getApiToken());
         }
 
 
@@ -67,7 +62,10 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.GET_DETAIL_LESSON.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.checkToken(mViewModel.getAccount().getEmail(), mViewModel.getAccount().getApiToken());
+
+        } else if (key.equals(EnumStorage.GET_DETAIL_LESSON.getEnumValue())) {
             DetailLessonData itemData = (DetailLessonData) data;
             mViewModel.setCurrentLessonData(itemData);
             String url = mViewModel.getCurrentLessonData().getClip_link();
@@ -82,11 +80,12 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
             mBinding.videoView.setMediaController(ctlr);
             ctlr.setMediaPlayer(mBinding.videoView);
             mBinding.videoView.setVideoURI(uri);
-         //   setOnRepaireVideo();
+            //   setOnRepaireVideo();
 
             mBinding.ivThumnailVideo.setVisibility(View.GONE);
             mBinding.videoView.setVisibility(View.VISIBLE);
             mBinding.progressbar.setVisibility(View.GONE);
+            setOnRepaireVideo();
             mBinding.videoView.start();
             setOnErroVideo();
             mBinding.videoView.setZOrderOnTop(true);
@@ -101,7 +100,6 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
                 mBinding.ivThumnailVideo.setVisibility(View.GONE);
                 mBinding.videoView.setVisibility(View.VISIBLE);
                 mBinding.progressbar.setVisibility(View.GONE);
-                mBinding.videoView.start();
 
             }
         });

@@ -44,7 +44,7 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
     @Override
     protected void initView() {
 
-        mViewModel.getNaturalData();
+
 
     }
 
@@ -52,6 +52,10 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.getNaturalData();
+        } else
+
         if (key.equals(EnumStorage.GET_NATURAL_DATA.getEnumValue())) {
 
             rawMaterialData = (List<NaturalData>) data;

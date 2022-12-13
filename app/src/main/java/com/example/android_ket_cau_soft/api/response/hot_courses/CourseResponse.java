@@ -1,32 +1,33 @@
-package com.example.android_ket_cau_soft.api.response.họmefrgres.news;
+package com.example.android_ket_cau_soft.api.response.hot_courses;
 
+import com.example.android_ket_cau_soft.model.CourseData;
 
-import com.example.android_ket_cau_soft.model.NewsData;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
-public class HotNewsResponse implements Serializable {
+public class CourseResponse implements Serializable {
     @SerializedName("status")
     private boolean status;
     @SerializedName("msg")
     private String msg;
     @SerializedName("data")
-    private NewsData[] data;
+    private List<CourseData> data;
 
-    public HotNewsResponse(boolean status, String msg, NewsData[] data) {
+    public CourseResponse(boolean status, String msg, List<CourseData> listData) {
 
         this.status = status;
         this.msg = msg;
-        this.data = data;
+        this.data = listData;
     }
 
 
-    public void setData(NewsData[] data) {
+    public void setData(List<CourseData> data) {
         this.data = data;
     }
 
-    public NewsData[] getData() {
+    public List<CourseData> getData() {
         return data;
     }
 

@@ -1,17 +1,12 @@
 package com.example.android_ket_cau_soft.viewmodel.home;
 
-import android.util.Log;
-
 
 import com.example.android_ket_cau_soft.EnumStorage;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.hot_courses.CourseResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.news.HotNewsResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.MarkAsReadedResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.NotificationResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.CheckTokenResponse;
-import com.example.android_ket_cau_soft.api.response.material.GetLNaturalDataResponse;
-import com.example.android_ket_cau_soft.api.response.material.GetLiveLoadDataResponse;
-import com.example.android_ket_cau_soft.api.response.material.GetRawMaterialDataResponse;
+import com.example.android_ket_cau_soft.api.response.hot_courses.CourseResponse;
+import com.example.android_ket_cau_soft.api.response.news.HotNewsResponse;
+import com.example.android_ket_cau_soft.api.response.notification.MarkAsReadedResponse;
+import com.example.android_ket_cau_soft.api.response.notification.NotificationResponse;
+import com.example.android_ket_cau_soft.api.response.setting.CheckTokenResponse;
 import com.example.android_ket_cau_soft.model.CourseData;
 import com.example.android_ket_cau_soft.model.NewsData;
 import com.example.android_ket_cau_soft.viewmodel.BaseVM;

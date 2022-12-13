@@ -25,6 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:fontFamily="sans-serif-light"
+            android:textSize="14sp"
+            android:textColor="@color/black"
             android:text="Sát hạch CCHN" />
     </LinearLayout>
 
@@ -47,6 +50,9 @@
             android:src="@drawable/ic_hoattai" />
 
         <TextView
+            android:fontFamily="sans-serif-light"
+            android:textSize="14sp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -73,6 +79,9 @@
             android:src="@drawable/ic_raw_material" />
 
         <TextView
+            android:fontFamily="sans-serif-light"
+            android:textSize="14sp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -97,6 +106,9 @@
             android:src="@drawable/ic_numbers" />
 
         <TextView
+            android:fontFamily="sans-serif-light"
+            android:textSize="14sp"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

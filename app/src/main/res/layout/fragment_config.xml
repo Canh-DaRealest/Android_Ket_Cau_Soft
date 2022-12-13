@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-light"
-            android:text="0965 376 689"
+
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-light"
-            android:text="0965 376 689"
+
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-light"
-            android:text="104 Kim Giang, Hoàng Mai, Hà Nội"
+
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -119,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-light"
-            android:text="https://www.facebook.com/groups/306759843423613/"
+
             android:textColor="@color/blue"
             android:textColorLink="@color/blue"
             android:textSize="16sp"
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-light"
-            android:text="https://www.facebook.com/ketcausoft/"
+
             android:textColor="@color/blue"
             android:textColorLink="@color/blue"
             android:textSize="16sp"
@@ -165,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="sans-serif-light"
-            android:text="https://ketcausoft.com"
+
             android:textColor="@color/blue"
             android:textColorLink="@color/blue"
             android:textSize="16sp"

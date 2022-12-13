@@ -12,7 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.adapter.HotNewsAdapter;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.notification.NotifiData;
+import com.example.android_ket_cau_soft.api.response.notification.NotifiData;
 import com.example.android_ket_cau_soft.databinding.FragmentNotificationBinding;
 import com.example.android_ket_cau_soft.view.fragment.BaseFragment;
 import com.example.android_ket_cau_soft.viewmodel.home.HomeFragmentVM;
@@ -36,8 +36,7 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
     @Override
     protected void initView() {
         mBinding.swNotificationLayout.setOnRefreshListener(this);
-
-        checkToken();
+        checkNetworkConnection();
 
     }
 
@@ -72,8 +71,9 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
 
-
-        if (key.equals(EnumStorage.GET_NOTIFICATION.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            checkToken();
+        } else if (key.equals(EnumStorage.GET_NOTIFICATION.getEnumValue())) {
             count = Integer.parseInt(msg);
 
             onUpdateCountCallback.updateCount(count);
@@ -90,11 +90,11 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
 
     @Override
     public void onCallbackError(String key, String msg) {
-
-        if (key.equals(EnumStorage.MARK_AS_READ.getEnumValue())) {
+        super.onCallbackError(key, msg);
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
             showSnackbar(mBinding.swNotificationLayout, msg, true);
-        }else{
-            super.onCallbackError(key, msg);
+        } else {
+            showSnackbar(mBinding.swNotificationLayout, msg, true);
         }
     }
 

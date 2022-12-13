@@ -65,7 +65,11 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
 
         } else if (v.getId() == R.id.bt_log_out) {
 
-            dosignOut();
+            if (mViewModel.isState()) {
+                dosignOut();
+            } else {
+                showSnackbar(mBinding.lnFrgSetting, NETWORK_ER_MSG, true);
+            }
         } else if (v.getId() == R.id.tr_get_config) {
             showInfor();
 
@@ -99,10 +103,26 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.LOG_OUT.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+
+            mViewModel.setState(true);
+
+        } else if (key.equals(EnumStorage.LOG_OUT.getEnumValue())) {
             CustomSharePreference.getInstance().saveBooleanValue(CustomSharePreference.LOGIN_STATE, false);
             mViewModel.deleteAccount();
             onParentFrgCallback.showFragmentFromMenu(LoginFragment.TAG, null, false);
+        }
+    }
+
+    @Override
+    public void onCallbackError(String key, String msg) {
+
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            showSnackbar(mBinding.lnFrgSetting, msg, true);
+            mViewModel.setState(false);
+
+        } else {
+            super.onCallbackError(key, msg);
         }
     }
 }

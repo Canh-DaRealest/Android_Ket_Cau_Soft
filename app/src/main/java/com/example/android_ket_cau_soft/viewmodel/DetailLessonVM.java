@@ -1,10 +1,8 @@
 package com.example.android_ket_cau_soft.viewmodel;
 
-import android.util.Log;
-
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.api.response.DetailLessonResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.CheckTokenResponse;
+import com.example.android_ket_cau_soft.api.response.setting.CheckTokenResponse;
 import com.example.android_ket_cau_soft.model.DetailLessonData;
 import com.example.android_ket_cau_soft.model.lesson.ItemLesson;
 

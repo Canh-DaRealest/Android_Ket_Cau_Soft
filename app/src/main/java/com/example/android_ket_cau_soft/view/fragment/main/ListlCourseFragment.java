@@ -45,6 +45,7 @@ public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding,
     }
 
     private void initData() {
+
         ObjectResult result = (ObjectResult) mData;
         mBinding.includeDetailCourse.tvBackText.setText(result.getName());
         courseAdapter = new CourseAdapter(mContext, (List<CourseData>) result.getListData());
@@ -74,15 +75,14 @@ public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding,
             }
         }, 1000);
     }
-
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
         if (mBinding.slSwipeRefreshLayoutDetail.isRefreshing()) {
             mBinding.slSwipeRefreshLayoutDetail.setRefreshing(false);
         }
-
     }
+
 
     @Override
     protected void clickView(View v) {

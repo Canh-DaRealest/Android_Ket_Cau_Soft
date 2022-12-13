@@ -47,15 +47,15 @@ public class GetConfigFragment extends BaseFragment<FragmentConfigBinding, Confi
     @Override
     protected void initView() {
 
-        mViewModel.getConfig();
-
     }
 
 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.GET_CONFIG.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.getConfig();
+        } else if (key.equals(EnumStorage.GET_CONFIG.getEnumValue())) {
             ConfigData configData = (ConfigData) data;
 
             updateUI(configData);

@@ -37,13 +37,7 @@ public class ExaminationFragment extends BaseFragment<FragmentExaminationBinding
 
         mViewModel.setExamType((int) mData);
         Log.i(TAG, "initView: examtype" + (int) mData);
-        mViewModel.getExamQuestion(mViewModel.getExamType());
-        mBinding.rbAnswerA.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-            }
-        });
 
     }
 
@@ -64,7 +58,9 @@ public class ExaminationFragment extends BaseFragment<FragmentExaminationBinding
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.GET_EXAM_QUESTION.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.getExamQuestion(mViewModel.getExamType());
+        } else if (key.equals(EnumStorage.GET_EXAM_QUESTION.getEnumValue())) {
             mViewModel.setListQuestionData((List<QuestionData>) data);
             showExam();
         }

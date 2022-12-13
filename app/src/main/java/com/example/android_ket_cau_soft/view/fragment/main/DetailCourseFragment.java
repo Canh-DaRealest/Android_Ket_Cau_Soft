@@ -1,12 +1,15 @@
 package com.example.android_ket_cau_soft.view.fragment.main;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.R;
@@ -22,9 +25,9 @@ import com.example.android_ket_cau_soft.viewmodel.home.DetailCourseVM;
 
 import java.util.List;
 
-public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBinding, DetailCourseVM> {
+public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBinding, DetailCourseVM> implements SwipeRefreshLayout.OnRefreshListener {
     public static final String TAG = DetailCourseFragment.class.getName();
-
+    private String courseId;
 
     @Override
     protected Class<DetailCourseVM> getClassVM() {
@@ -38,17 +41,18 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
 
     @Override
     protected void initView() {
+        mBinding.slDetailCourse.setOnRefreshListener(this);
 
-        String courseId = (String) mData;
-        mViewModel.updateCourseContent(courseId);
-
+        courseId = (String) mData;
 
     }
 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.DETAILCOURSE_REQUEST.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.updateCourseContent(courseId);
+        } else if (key.equals(EnumStorage.DETAILCOURSE_REQUEST.getEnumValue())) {
 
             LessonData lessonData = (LessonData) data;
             mViewModel.setLessonData(lessonData);
@@ -62,6 +66,18 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
             addLesson(mViewModel.getLessonData());
 
         }
+    }
+
+    @Override
+    public void onCallbackError(String key, String msg) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            showSnackbar(requireActivity().findViewById(R.id.ln_detail_course), msg, true);
+        } else if (key.equals(EnumStorage.DETAILCOURSE_REQUEST.getEnumValue())) {
+            showSnackbar(requireActivity().findViewById(R.id.ln_detail_course), msg, true);
+        } else {
+            super.onCallbackError(key, msg);
+        }
+
     }
 
     private String formatTime(int timeInSecond) {
@@ -103,9 +119,32 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
     }
 
     private void doClickItemLesson(ItemLesson itemLesson) {
-        mainCallBack.showFragment(DetailLessonFragment.TAG, new IntentResult(mViewModel.getLessonData().getName(),itemLesson), true);
+        mainCallBack.showFragment(DetailLessonFragment.TAG, new IntentResult(mViewModel.getLessonData().getName(), itemLesson), true);
 
     }
 
 
+    @Override
+    public void onRefresh() {
+        checkNetworkConnection();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                if (mBinding.slDetailCourse.isRefreshing()) {
+                    Toast.makeText(mContext, "Đã cập nhật", Toast.LENGTH_SHORT).show();
+                    mBinding.slDetailCourse.setRefreshing(false);
+                }
+
+            }
+        }, 1000);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mBinding.slDetailCourse.isRefreshing()) {
+            mBinding.slDetailCourse.setRefreshing(false);
+        }
+    }
 }

@@ -23,6 +23,7 @@ public enum EnumStorage {
 
 
     SUCCESS("SUCCESS"),
+    NETWORK_STATE("NETWORK_STATE"),
 
     //request
     LOGIN_REQUEST("LOGIN_REQUEST"),

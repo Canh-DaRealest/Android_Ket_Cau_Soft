@@ -3,9 +3,7 @@ package com.example.android_ket_cau_soft.viewmodel.setting;
 
 import com.example.android_ket_cau_soft.App;
 import com.example.android_ket_cau_soft.EnumStorage;
-import com.example.android_ket_cau_soft.api.request.LogoutRequest;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.GetConfigResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.LogoutResponse;
+import com.example.android_ket_cau_soft.api.response.setting.GetConfigResponse;
 import com.example.android_ket_cau_soft.viewmodel.BaseVM;
 
 public class ConfigFrgVM extends BaseVM {

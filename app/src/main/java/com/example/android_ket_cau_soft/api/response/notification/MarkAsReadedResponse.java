@@ -1,4 +1,4 @@
-package com.example.android_ket_cau_soft.api.response.họmefrgres.notification;
+package com.example.android_ket_cau_soft.api.response.notification;
 
 import com.example.android_ket_cau_soft.api.response.BaseResponse;
 

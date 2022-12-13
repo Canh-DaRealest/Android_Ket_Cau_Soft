@@ -93,10 +93,14 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding, SignUpVM
 
     @Override
     public void onCallbackError(String key, String msg) {
-        super.onCallbackError(key, msg);
-        if (key.equals(EnumStorage.SIGN_UP_REQUEST.getEnumValue())) {
-            dismissProgressDialog();
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
             showSnackbar(mBinding.frSignupMain, msg, true);
+            mViewModel.setState(false);
+
+        } else if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
+
+            super.onCallbackError(key, msg);
+
         } else if (key.equals(EnumStorage.EMAIL_ERROR.getEnumValue())) {
 
             showError(mBinding.textFieldEmail, msg);
@@ -113,6 +117,8 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding, SignUpVM
 
             showError(mBinding.textFieldRetypePassword, msg);
 
+        } else {
+            showSnackbar(mBinding.frSignupMain, msg, true);
         }
     }
 
@@ -121,7 +127,12 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding, SignUpVM
         super.onCallbackSuccess(key, msg, data);
         if (key.equals(EnumStorage.SUCCESS.getEnumValue())) {
             showProgressDialog();
-            showSnackbar(mBinding.frSignupMain, msg, false);
+            if (mViewModel.getState()) {
+                mViewModel.sendRequest();
+
+            } else {
+                showSnackbar(mBinding.frSignupMain, NETWORK_ER_MSG, true);
+            }
         } else if (key.equals(EnumStorage.SIGN_UP_SUCCESS.getEnumValue())) {
 
             dismissProgressDialog();
@@ -143,11 +154,11 @@ public class SignUpFragment extends BaseFragment<FragmentSignUpBinding, SignUpVM
     }
 
     private void handleFocus() {
-        onFocusChange(mBinding.textFieldPassword, mBinding.edtPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSignUp);
-        onFocusChange(mBinding.textFieldRetypePassword, mBinding.edtRetypePassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE,mBinding.btSignUp);
+        onFocusChange(mBinding.textFieldPassword, mBinding.edtPassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE, mBinding.btSignUp);
+        onFocusChange(mBinding.textFieldRetypePassword, mBinding.edtRetypePassword, TextInputLayout.END_ICON_PASSWORD_TOGGLE, mBinding.btSignUp);
 
-        onFocusChange(mBinding.textFieldEmail, mBinding.edtEmail, TextInputLayout.END_ICON_CLEAR_TEXT,mBinding.btSignUp);
-        onFocusChange(mBinding.textFieldName, mBinding.edtName, TextInputLayout.END_ICON_CLEAR_TEXT,mBinding.btSignUp);
+        onFocusChange(mBinding.textFieldEmail, mBinding.edtEmail, TextInputLayout.END_ICON_CLEAR_TEXT, mBinding.btSignUp);
+        onFocusChange(mBinding.textFieldName, mBinding.edtName, TextInputLayout.END_ICON_CLEAR_TEXT, mBinding.btSignUp);
     }
 
 

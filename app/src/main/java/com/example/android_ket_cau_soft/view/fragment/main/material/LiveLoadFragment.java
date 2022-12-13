@@ -43,18 +43,18 @@ public class LiveLoadFragment extends BaseFragment<FragmentLiveLoadBinding, Live
     protected void initView() {
 
 
-        mViewModel.getLiveLoadData();
-
     }
 
 
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
-        if (key.equals(EnumStorage.GET_LIVE_LOAD.getEnumValue())) {
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            mViewModel.getLiveLoadData();
+        } else if (key.equals(EnumStorage.GET_LIVE_LOAD.getEnumValue())) {
 
             liveLoadDataList = (List<LiveLoadData>) data;
-            updateData(msg,liveLoadDataList );
+            updateData(msg, liveLoadDataList);
 
             for (int i = 0; i < liveLoadDataList.size(); i++) {
                 for (int j = 0; j < liveLoadDataList.get(i).getLiveLoadData2List().size(); j++) {
@@ -70,7 +70,7 @@ public class LiveLoadFragment extends BaseFragment<FragmentLiveLoadBinding, Live
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
-        showSnackbar(mBinding.lnLiveloadMain, key + ": " + msg, true);
+        showSnackbar(mBinding.lnLiveloadMain, msg, true);
     }
 
     private void updateData(String msg, List<LiveLoadData> lData) {

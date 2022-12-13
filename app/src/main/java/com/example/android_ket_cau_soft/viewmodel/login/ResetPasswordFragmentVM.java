@@ -40,24 +40,24 @@ public class ResetPasswordFragmentVM extends BaseVM {
 
         if (result) {
             onCheckingCallback.onCallbackSuccess(EnumStorage.SUCCESS.getEnumValue(), null, null);
-            sendRequest();
+
         }
 
     }
 
 
-    private void sendRequest() {
-     getAPIService().resetPassWord(new ResetPasswordRequest(email, newPassword, confirmPassword)).enqueue(initResponeCallback(EnumStorage.RESET_PASSWORD_REQUEST.getEnumValue()));
+    public void sendRequest() {
+        getAPIService().resetPassWord(new ResetPasswordRequest(email, newPassword, confirmPassword)).enqueue(initResponeCallback(EnumStorage.RESET_PASSWORD_REQUEST.getEnumValue()));
     }
 
     @Override
-    protected void handleAPISuccess(String key,String code, Object body) {
-        super.handleAPISuccess(key,code, body);
+    protected void handleAPISuccess(String key, String code, Object body) {
+        super.handleAPISuccess(key, code, body);
         ResetPasswordResponse response = (ResetPasswordResponse) body;
 
-        if (response.getStatus()){
+        if (response.getStatus()) {
             onCheckingCallback.onCallbackSuccess(EnumStorage.RESET_PASSWORD_REQUEST.getEnumValue(), response.getMsg(), null);
-        }else{
+        } else {
             onCheckingCallback.onCallbackError(EnumStorage.RESET_PASSWORD_REQUEST.getEnumValue(), response.getMsg());
         }
 
@@ -90,4 +90,13 @@ public class ResetPasswordFragmentVM extends BaseVM {
         this.confirmPassword = confirmPassword;
     }
 
+    private boolean state = false;
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
 }

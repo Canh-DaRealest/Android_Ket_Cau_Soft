@@ -33,6 +33,12 @@ public class DetailCourseVM extends BaseVM {
         }
     }
 
+    @Override
+    protected void handleAPIFail(String key, int code, String message) {
+        super.handleAPIFail(key, code, message);
+        onCheckingCallback.onCallbackError(key, code+": "+message);
+    }
+
     public void setLessonData(LessonData lessonData) {
         this.lessonData = lessonData;
     }

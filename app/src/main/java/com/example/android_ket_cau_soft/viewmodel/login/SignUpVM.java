@@ -44,13 +44,12 @@ public class SignUpVM extends BaseVM {
 
         if (result) {
             onCheckingCallback.onCallbackSuccess(EnumStorage.SUCCESS.getEnumValue(), null, null);
-            sendRequest();
         }
 
     }
 
 
-    private void sendRequest() {
+    public void sendRequest() {
      getAPIService().singingUp(new SignUpRequest(email, name, password, password1)).enqueue(initResponeCallback(EnumStorage.SIGN_UP_REQUEST.getEnumValue()));
     }
 
@@ -103,5 +102,15 @@ public class SignUpVM extends BaseVM {
 
     public void setPassword1(String password1) {
         this.password1 = password1;
+    }
+
+    private boolean state = false;
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 }

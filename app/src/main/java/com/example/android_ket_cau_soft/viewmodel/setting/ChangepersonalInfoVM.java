@@ -1,18 +1,24 @@
 package com.example.android_ket_cau_soft.viewmodel.setting;
 
-import android.util.Log;
-
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.api.request.SaveInforRequest;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.CheckTokenResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.SaveInfoResponse;
+import com.example.android_ket_cau_soft.api.response.setting.CheckTokenResponse;
+import com.example.android_ket_cau_soft.api.response.setting.SaveInfoResponse;
 import com.example.android_ket_cau_soft.database.entities.User;
 import com.example.android_ket_cau_soft.viewmodel.BaseVM;
 
 
 public class ChangepersonalInfoVM extends BaseVM {
 
+    protected  boolean state = false;
 
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
     public Boolean checkValidInput(String name) {
         return name.isEmpty();
 

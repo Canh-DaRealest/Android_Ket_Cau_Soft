@@ -113,6 +113,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/texfield_update_birthday"
             style="@style/textField"
+            android:focusable="false"
             android:hint="Ngày sinh"
             app:errorEnabled="false"
             app:errorTextColor="@color/red"
@@ -120,11 +121,12 @@
             app:layout_constraintStart_toStartOf="@id/ln_edit"
             app:layout_constraintTop_toBottomOf="@id/texfield_update_phone">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:id="@+id/edt_update_birthday"
                 style="@style/edittext"
-                android:imeOptions="actionDone"
-                android:inputType="datetime" />
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="15dp"
+                android:hint="Ngày sinh" />
 
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -142,3 +144,5 @@
         app:layout_constraintTop_toBottomOf="@id/ln_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

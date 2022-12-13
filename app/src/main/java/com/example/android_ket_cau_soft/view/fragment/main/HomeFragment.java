@@ -40,7 +40,7 @@ import java.util.TimerTask;
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragmentVM> implements SwipeRefreshLayout.OnRefreshListener {
     public static final String TAG = HomeFragment.class.getName();
 
-    private final Handler handler = new Handler();
+
     private OnUpdateCountCallback onUpdateCountCallback;
 
 
@@ -66,7 +66,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         mBinding.includeTest.ivCchnExam.setOnClickListener(this);
         mBinding.includeTest.ivRawMaterial.setOnClickListener(this);
         mBinding.includeTest.ivNaturalNumber.setOnClickListener(this);
-        initData();
 
 
     }
@@ -83,7 +82,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
             showLiveLoadFrg();
 
         } else if (v.getId() == R.id.iv_raw_material) {
-           showRawMaterialFragment();
+            showRawMaterialFragment();
 
         } else if (v.getId() == R.id.iv_natural_number) {
             showNaturalDataFragment();
@@ -142,8 +141,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
+        if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
+            initData();
 
-        if (key.equals(EnumStorage.HOTNEWS_REQUEST.getEnumValue())) {
+        } else if (key.equals(EnumStorage.HOTNEWS_REQUEST.getEnumValue())) {
 
 
             NewsData[] mData = (NewsData[]) data;
@@ -179,7 +180,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
             onUpdateCountCallback.updateCount(Integer.parseInt(msg));
             Log.i(TAG, "onCallbackSuccess: getnotice " + Integer.parseInt(msg));
 
-        }  else {
+        } else {
 
             List<CourseData> mData = (List<CourseData>) data;
 
@@ -284,12 +285,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
 
     @Override
     public void onCallbackError(String key, String msg) {
-
-        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())){
+        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
             super.onCallbackError(key, msg);
-        }else{
-            if (isAdded()){
-                showSnackbar(requireActivity().findViewById(R.id.sl_home_swipeRefreshLayout), key + ": " + msg, true);
+        } else {
+            if (isAdded()) {
+                showSnackbar(requireActivity().findViewById(R.id.sl_home_swipeRefreshLayout), msg, true);
             }
         }
 
@@ -319,7 +319,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
 
     @Override
     public void onRefresh() {
-        initData();
+        checkNetworkConnection();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -354,8 +354,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
         if (mBinding.slHomeSwipeRefreshLayout.isRefreshing()) {
             mBinding.slHomeSwipeRefreshLayout.setRefreshing(false);
         }

@@ -89,4 +89,14 @@ public class LoginVM extends BaseVM {
         //  setAccount(newUser);
         account = newUser;
     }
+
+  private boolean state =false;
+
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.android_ket_cau_soft.api.response.họmefrgres.setting;
+package com.example.android_ket_cau_soft.api.response.setting;
 
 import com.example.android_ket_cau_soft.api.response.BaseResponse;
 import com.google.gson.annotations.Expose;

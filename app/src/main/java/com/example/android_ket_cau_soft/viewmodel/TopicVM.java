@@ -1,12 +1,20 @@
 package com.example.android_ket_cau_soft.viewmodel;
 
 import com.example.android_ket_cau_soft.EnumStorage;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.hot_courses.CourseResponse;
-import com.example.android_ket_cau_soft.api.response.họmefrgres.setting.CheckTokenResponse;
+import com.example.android_ket_cau_soft.api.response.hot_courses.CourseResponse;
+import com.example.android_ket_cau_soft.api.response.setting.CheckTokenResponse;
 import com.example.android_ket_cau_soft.api.response.topic.GetEduTopicResponse;
 
 public class TopicVM extends BaseVM {
+    private boolean state = false;
 
+    public boolean getState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
 
     public void getTopic() {
         getAPIService().getEduTopic().enqueue(initResponeCallback(EnumStorage.GET_TOPIC.getEnumValue()));

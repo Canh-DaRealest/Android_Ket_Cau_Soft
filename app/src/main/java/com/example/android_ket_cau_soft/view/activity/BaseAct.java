@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewbinding.ViewBinding;
 import com.example.android_ket_cau_soft.R;
+import com.example.android_ket_cau_soft.broadcastreceiver.MyBroadCast;
 import com.example.android_ket_cau_soft.callback.IMainCallBack;
 import com.example.android_ket_cau_soft.view.fragment.BaseFragment;
 
@@ -54,6 +55,7 @@ public abstract class BaseAct<T extends ViewBinding, M extends ViewModel> extend
          fragment = (BaseFragment<?, ?>) clazzName.newInstance();
             fragment.setmData(data);
             fragment.setMainCallBack(this);
+
 
             FragmentManager fragmentManager = getSupportFragmentManager();
 
