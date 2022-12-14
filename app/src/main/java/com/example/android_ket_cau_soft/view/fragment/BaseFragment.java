@@ -24,6 +24,9 @@ import androidx.viewbinding.ViewBinding;
 
 import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.EnumStorage;
+import com.example.android_ket_cau_soft.api.clientservice.ClientService;
+import com.example.android_ket_cau_soft.api.request.CheckTokenReques;
+import com.example.android_ket_cau_soft.api.response.setting.CheckTokenResponse;
 import com.example.android_ket_cau_soft.broadcastreceiver.MyBroadCast;
 import com.example.android_ket_cau_soft.callback.IMainCallBack;
 import com.example.android_ket_cau_soft.callback.OnAPICallback;
@@ -42,6 +45,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import retrofit2.Call;
+
 public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> extends Fragment implements View.OnClickListener, OnCheckingCallback, OnAPICallback, OnUpdateCountCallback, MyBroadCast.OnNetworkCallback {
 
     protected static final String NETWORK_ER_MSG = "Kết nối mạng không ổn định, vui lòng thử lại";
@@ -58,6 +63,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     protected OnTouchListener onTouchListener;
     protected final Handler handler = new Handler();
     protected MyBroadCast myBroadCast = new MyBroadCast();
+    protected IntentFilter intentFilter;
 
     public void setOnTouchListener(OnTouchListener onTouchListener) {
         this.onTouchListener = onTouchListener;
@@ -74,7 +80,20 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     @Override
     public void onStop() {
         super.onStop();
-        mContext.unregisterReceiver(myBroadCast);
+        if (myBroadCast != null) {
+            mContext.unregisterReceiver(myBroadCast);
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (myBroadCast != null && intentFilter != null) {
+            mContext.registerReceiver(myBroadCast, intentFilter);
+        }
+
+
     }
 
     protected static NoticeDialog getNoticeDialog(Context mContext) {
@@ -183,6 +202,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
         return mBinding.getRoot();
     }
 
+
     protected abstract Class<M> getClassVM();
 
     protected abstract T initViewBinding(LayoutInflater inflater);
@@ -195,10 +215,11 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
         initView();
     }
 
+
     protected void checkNetworkConnection() {
         MyBroadCast.onNetworkCallback = this;
 
-        IntentFilter intentFilter = new IntentFilter();
+        intentFilter = new IntentFilter();
         intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         mContext.registerReceiver(myBroadCast, intentFilter);
 
@@ -390,7 +411,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
         if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
 
             if (msg.equals("401")) {
-                getNoticeDialog(mContext).setUpDialog(" Thông báo", "Tài khoản đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại", "Ok", null, true, new View.OnClickListener() {
+                getNoticeDialog(mContext).setUpDialog(" Thông báo", "Tài khoản đã được đăng nhập ở nơi khác, vui lòng đăng nhập lại", "Ok", null, false, new View.OnClickListener() {
 
                     @Override
                     public void onClick(View v) {

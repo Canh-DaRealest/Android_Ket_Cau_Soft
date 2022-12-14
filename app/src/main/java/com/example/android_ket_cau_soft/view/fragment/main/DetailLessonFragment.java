@@ -39,7 +39,7 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
 
     @Override
     protected void initView() {
-
+        mBinding.includeVideoviewBack.ivBack.setOnClickListener(this);
 
         IntentResult intentResult = (IntentResult) mData;
 
@@ -71,7 +71,7 @@ public class DetailLessonFragment extends BaseFragment<FragmentDetailLessonBindi
             String url = mViewModel.getCurrentLessonData().getClip_link();
             Uri uri = Uri.parse(url);
 
-            mBinding.tvLessonName.setText(mViewModel.getCurrentLessonData().getName());
+            mBinding.includeVideoviewBack.tvBackText.setText(mViewModel.getCurrentLessonData().getName());
 
             Glide.with(mContext).load(mViewModel.getCurrentLessonData().getClip_cover()).into(mBinding.ivThumnailVideo);
 

@@ -38,7 +38,7 @@ public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding,
     protected void initView() {
 
         mBinding.includeDetailCourse.ivBack.setOnClickListener(this);
-//        mBinding.includeDetailCourse.tvBackText.setText();
+        mBinding.includeDetailCourse.tvBackText.setText("");
         mBinding.slSwipeRefreshLayoutDetail.setOnRefreshListener(this);
 
         initData();
@@ -75,6 +75,7 @@ public class ListlCourseFragment extends BaseFragment<ListCourseFragmentBinding,
             }
         }, 1000);
     }
+
     @Override
     public void onStop() {
         super.onStop();

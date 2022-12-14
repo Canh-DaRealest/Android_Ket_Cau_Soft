@@ -5,153 +5,169 @@
     android:id="@+id/fr_signup_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-   >
+    android:background="@color/white">
 
-    <ImageView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_background_intro"
-        android:backgroundTint="@color/dark_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
 
-        <com.airbnb.lottie.LottieAnimationView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/sign_up_animation" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_field_email"
-            style="@style/textField"
-            android:hint="@string/txt_email"
-            app:endIconMode="clear_text">
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/sign_up_animation" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_email"
-                style="@style/edittext"
-                android:autofillHints="emailAddress"
-                android:inputType="textEmailAddress" />
+            <TextView
+                style="@style/textlabel"
+                android:layout_marginTop="30dp"
+                android:text="@string/txt_email" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_field_email"
+                style="@style/textField"
+                app:endIconMode="clear_text">
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_field_name"
-            style="@style/textField"
-            android:hint="@string/txt_sign_up_name"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_name"
-                style="@style/edittext"
-                android:autofillHints="name"
-                android:inputType="textPersonName" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_email"
+                    style="@style/edittext"
+                    android:autofillHints="emailAddress"
+                    android:inputType="textEmailAddress" />
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_field_password"
-            style="@style/textField"
-            android:hint="@string/txt_password">
+            <TextView
+                style="@style/textlabel"
+                android:layout_marginTop="20dp"
+                android:text="@string/txt_sign_up_name" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_password"
-                style="@style/edittext"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_field_name"
+                style="@style/textField"
+                app:endIconMode="clear_text">
 
-                android:autofillHints="password"
-                android:inputType="textPassword" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_name"
+                    style="@style/edittext"
+                    android:autofillHints="name"
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_field_retype_password"
-            style="@style/textField"
-            android:hint="@string/txt_retype_password">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_retype_password"
-                style="@style/edittext"
-                android:autofillHints="password"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+                    android:inputType="textPersonName" />
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_sign_up"
-            style="@style/button"
-            android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/blue"
-            android:text="@string/txt_bt_sign_up"
-            android:textColor="@color/white"
-            app:cornerRadius="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <TextView
+                style="@style/textlabel"
+                android:layout_marginTop="20dp"
+                android:text="@string/txt_password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_field_password"
+                style="@style/textField">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_password"
+                    style="@style/edittext"
+                    android:autofillHints="password"
+
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <TextView
+                style="@style/textlabel"
+                android:layout_marginTop="20dp"
+                android:text="@string/txt_retype_password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_field_retype_password"
+                style="@style/textField"
+           >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_retype_password"
+                    style="@style/edittext"
+                    android:autofillHints="password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_sign_up"
+                style="@style/button"
+                android:layout_marginHorizontal="30dp"
+                android:backgroundTint="@color/blue"
+                android:text="@string/txt_bt_sign_up"
+                android:textColor="@color/white"
+                app:cornerRadius="10dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom">
+                android:layout_marginTop="30dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/have_account"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
 
                 <LinearLayout
-                    android:id="@+id/tv_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:orientation="vertical">
+                    android:layout_gravity="center|bottom">
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:fontFamily="sans-serif"
-                        android:text="@string/txt_bt_login"
-                        android:textColor="@color/blue"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:text="@string/have_account"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/green" />
+                    <LinearLayout
+                        android:id="@+id/tv_login"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/txt_bt_login"
+                            android:textColor="@color/blue"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/green" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
-
-            </LinearLayout>
-
-        </FrameLayout>
+            </FrameLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

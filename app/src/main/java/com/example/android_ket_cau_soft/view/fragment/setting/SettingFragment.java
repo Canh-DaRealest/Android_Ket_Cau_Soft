@@ -33,8 +33,8 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
 
     @Override
     protected void initView() {
-
-
+        mBinding.includeSettingBack.tvBackText.setText("Cài Đặt");
+        mBinding.includeSettingBack.ivBack.setVisibility(View.GONE);
         mViewModel.updateAccountFromDB();
         clickItems();
 

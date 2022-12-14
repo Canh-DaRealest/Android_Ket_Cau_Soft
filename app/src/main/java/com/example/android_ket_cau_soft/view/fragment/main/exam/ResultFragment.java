@@ -39,10 +39,10 @@ public class ResultFragment extends BaseFragment<FragmentResultBinding, ResultFr
     protected void initView() {
 
 
-        mBinding.btTestAgain.setOnClickListener(this);
+        mBinding.includeResultBack.ivBack.setOnClickListener(this);
+        mBinding.includeResultBack.tvBackText.setText("Kết Quả Sát Hạch CCHN");
 
         ExamResult examResult = (ExamResult) mData;
-        mBinding.btTestAgain.setOnClickListener(this);
         mViewModel.setChooseAnswerList(examResult.getChooseAnswerList());
         mViewModel.setQuestionDataList(examResult.getQuestionDataList());
 
@@ -104,7 +104,7 @@ public class ResultFragment extends BaseFragment<FragmentResultBinding, ResultFr
     protected void clickView(View v) {
         super.clickView(v);
 
-        if (v.getId() == R.id.bt_test_again) {
+        if (v.getId() == R.id.iv_back) {
             backToPreviousFragment();
         }
     }

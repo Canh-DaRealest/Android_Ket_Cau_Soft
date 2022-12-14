@@ -41,7 +41,8 @@ public class LiveLoadFragment extends BaseFragment<FragmentLiveLoadBinding, Live
 
     @Override
     protected void initView() {
-
+mBinding.includeLiveloadBack.tvBackText.setText("Hoạt Tải");
+mBinding.includeLiveloadBack.ivBack.setOnClickListener(this);
 
     }
 

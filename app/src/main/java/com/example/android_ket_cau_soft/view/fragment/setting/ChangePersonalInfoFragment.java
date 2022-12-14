@@ -44,6 +44,8 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
     @Override
     protected void initView() {
 
+        mBinding.includeChangeInforBack.tvBackText.setText("Thông Tin Cá Nhân");
+        mBinding.includeChangeInforBack.ivBack.setOnClickListener(this);
 
         if (mViewModel.getAccount() != null) {
             Log.i(TAG, "initView: ChangePersonalInfo: " + mViewModel.getAccount().toString());
@@ -105,6 +107,8 @@ public class ChangePersonalInfoFragment extends BaseFragment<FragmentChangePerso
         } else if (v.getId() == R.id.edt_update_birthday) {
             hideSoftKeboard();
             showDatePickerBottomSheet();
+        } else if (v.getId() == R.id.iv_back) {
+            backToPreviousFragment();
         }
     }
 

@@ -46,7 +46,8 @@ public class GetConfigFragment extends BaseFragment<FragmentConfigBinding, Confi
 
     @Override
     protected void initView() {
-
+        mBinding.includeConfigBack.ivBack.setOnClickListener(this);
+        mBinding.includeConfigBack.tvBackText.setText("Thông tin Về Chúng Tôi");
     }
 
 
@@ -93,6 +94,8 @@ public class GetConfigFragment extends BaseFragment<FragmentConfigBinding, Confi
         } else if (v.getId() == R.id.tv_facebook_group) {
             showWebView(configData.getFacegroup());
 
+        }else if (v.getId() == R.id.iv_back) {
+           backToPreviousFragment();
         }
     }
 

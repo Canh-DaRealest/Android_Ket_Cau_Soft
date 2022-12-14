@@ -25,7 +25,6 @@ public class NoticeDialog extends Dialog implements View.OnClickListener {
 
     private void initViews() {
 
-
     }
 
     public void setUpDialog(String title, String content, String btPositive, String btNegative, boolean isCancelable, View.OnClickListener onClickListener) {

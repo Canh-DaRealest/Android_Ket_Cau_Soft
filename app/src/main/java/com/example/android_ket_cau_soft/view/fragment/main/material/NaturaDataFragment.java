@@ -44,7 +44,8 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
     @Override
     protected void initView() {
 
-
+        mBinding.includeNaturaldataBack.tvBackText.setText("Số Tự Nhiên");
+        mBinding.includeNaturaldataBack.ivBack.setOnClickListener(this);
 
     }
 
@@ -54,9 +55,7 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
         super.onCallbackSuccess(key, msg, data);
         if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
             mViewModel.getNaturalData();
-        } else
-
-        if (key.equals(EnumStorage.GET_NATURAL_DATA.getEnumValue())) {
+        } else if (key.equals(EnumStorage.GET_NATURAL_DATA.getEnumValue())) {
 
             rawMaterialData = (List<NaturalData>) data;
             updateData(msg, rawMaterialData);
@@ -75,7 +74,7 @@ public class NaturaDataFragment extends BaseFragment<FragmentNatureDataBinding, 
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
-        showSnackbar(mBinding.lnNatureMain, key + ": " + msg, true);
+        showSnackbar(mBinding.lnNatureMain,  msg, true);
     }
 
     private void updateData(String msg, List<NaturalData> lData) {

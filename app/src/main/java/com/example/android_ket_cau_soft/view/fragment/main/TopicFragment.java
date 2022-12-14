@@ -40,6 +40,8 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
 
     @Override
     protected void initView() {
+        mBinding.includeLessonBack.ivBack.setVisibility(View.GONE);
+        mBinding.includeLessonBack.tvBackText.setText("Danh sách chủ đề");
         mBinding.slCourseTopic.setOnRefreshListener(this);
 
         mBinding.tvMyCourse.setOnClickListener(this);
@@ -58,6 +60,8 @@ public class TopicFragment extends BaseFragment<FragmentLessonBinding, TopicVM> 
 
             doClickBttMyCourse();
 
+        } else if (v.getId() == R.id.iv_back) {
+            backToPreviousFragment();
         }
     }
 

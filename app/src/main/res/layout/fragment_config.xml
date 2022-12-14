@@ -5,14 +5,12 @@
     android:id="@+id/cl_config_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_background_main"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@drawable/bg_top_background2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <include
+        android:id="@+id/include_config_back"
+        layout="@layout/item_back_actionbar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -28,9 +26,9 @@
     <LinearLayout
         android:id="@+id/ln_infor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/roundcorner"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:background="@drawable/bg_bottom_background"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
         android:paddingVertical="15dp"
@@ -41,9 +39,9 @@
 
 
         <TextView
-            android:layout_marginTop="40dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:fontFamily="sans-serif-light"
             android:text="Zalo:"
             android:textColor="@color/black"

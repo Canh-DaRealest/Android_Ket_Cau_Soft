@@ -41,6 +41,7 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
 
     @Override
     protected void initView() {
+        mBinding.includeDetailcourseBack.ivBack.setOnClickListener(this);
         mBinding.slDetailCourse.setOnRefreshListener(this);
 
         courseId = (String) mData;
@@ -56,6 +57,7 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
 
             LessonData lessonData = (LessonData) data;
             mViewModel.setLessonData(lessonData);
+            mBinding.includeDetailcourseBack.tvBackText.setText(lessonData.getName());
             mBinding.tvMentorName.setText(mViewModel.getLessonData().getMentor());
             mBinding.tvLessonNumber.setText(String.format("%d bài giảng", lessonData.getLessonNum()));
             mBinding.tvStudentNumber.setText(String.format("%d học viên", lessonData.getRated()));
@@ -93,9 +95,7 @@ public class DetailCourseFragment extends BaseFragment<DetailCourseFragmentBindi
         super.clickView(v);
 
         if (v.getId() == R.id.iv_back) {
-            MainActivity homeActivity = (MainActivity) mContext;
-
-            homeActivity.onBackPressed();
+         backToPreviousFragment();
         }
     }
 

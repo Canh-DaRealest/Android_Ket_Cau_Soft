@@ -36,7 +36,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
     @Override
     protected void initView() {
         hideSoftKeboard();
-
         mViewModel.updateAccountFromDB();
 
         if (mViewModel.getAccount() != null) {

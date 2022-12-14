@@ -22,6 +22,8 @@ import com.example.android_ket_cau_soft.viewmodel.MainFragmentVM;
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.Objects;
+
 public class MainFragment extends BaseFragment<FragmentMainBinding, MainFragmentVM> implements OnParentFrgCallback, OnTouchListener {
 
     public static final String TAG = MainFragment.class.getName();
@@ -142,7 +144,7 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainFragment
         }
 
         //make bottomnavigation backpress perfectly
-        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (!mViewModel.getCurrentFragment().equals(EnumStorage.MENU_HOME.getEnumValue())) {
@@ -150,6 +152,8 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainFragment
 
                     mViewModel.setCurrentFragment(EnumStorage.MENU_HOME.getEnumValue());
                     mBinding.bottomNav.getMenu().getItem(0).setChecked(true);
+                } else {
+                    requireActivity().onBackPressed();
                 }
 
             }

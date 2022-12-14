@@ -37,4 +37,7 @@
     <string name="example_answ_b">b. Thời hạn sử dụng, vật liệu</string>
     <string name="example_answ_c">c. Yêu cầu xây dựng công trình</string>
     <string name="example_answ_d">d. Tất cả các căn cứ trên</string>
+    <string name="txt_name">Tên</string>
+    <string name="txt_phone_num">Số điện thoại</string>
+    <string name="txt_birthday">Ngày sinh</string>
 </resources>

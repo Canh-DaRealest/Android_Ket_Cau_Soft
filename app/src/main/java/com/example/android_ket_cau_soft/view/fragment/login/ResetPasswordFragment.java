@@ -31,6 +31,8 @@ public class ResetPasswordFragment extends BaseFragment<FragmentResetPasswordBin
 
     @Override
     protected void initView() {
+        mBinding.includeResetPasswordBack.ivBack.setVisibility(View.GONE);
+        mBinding.includeResetPasswordBack.tvBackText.setText("Đặt Lại Mật Khẩu");
         showSoftKeyboard(mBinding.edtForgotEmail);
         handleViews();
 

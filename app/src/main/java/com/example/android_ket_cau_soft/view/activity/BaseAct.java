@@ -62,7 +62,7 @@ public abstract class BaseAct<T extends ViewBinding, M extends ViewModel> extend
             fragmentTransaction = fragmentManager.beginTransaction();
 
 
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_bottom, R.anim.enter_from_left, R.anim.exit_to_top);
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left);
             fragmentTransaction.replace(R.id.fr_container_login, fragment);
 //
 //            if (idContainer == EnumCustom.HOME_CONTAINER.getEnumValue()) {

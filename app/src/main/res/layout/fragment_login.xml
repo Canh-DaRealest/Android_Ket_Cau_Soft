@@ -4,116 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ln_frg_login"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <ImageView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_top_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/white_line"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/black" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="11dp"
-        android:orientation="vertical"
-        android:padding="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/txt_hello"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
-            android:text="@string/please_login_to_continue"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-
-            android:id="@+id/text_field_login_email"
-            style="@style/textField"
-            android:layout_marginTop="30dp"
-            app:hintEnabled="true"
-            android:hint="@string/txt_email">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_login_email"
-                style="@style/edittext"
-                android:imeOptions="actionNext"
-                android:inputType="text" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/text_field_login_password"
-            style="@style/textField"
-            android:layout_marginTop="30dp"
-            android:hint="@string/txt_password"
-            app:errorTextColor="@color/red">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_login_password"
-                style="@style/edittext"
-                android:imeOptions="actionGo"
-                android:inputType="textPassword" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tv_forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:fontFamily="sans-serif"
-            android:text="@string/forgot_password"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_login"
-            style="@style/button"
-            android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/blue"
-            android:text="@string/txt_bt_login"
-            android:textColor="@color/white" />
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/txt_hello"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/please_login_to_continue"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/signup_anim" />
+
+            <TextView
+                style="@style/textlabel"
+                android:layout_marginTop="30dp"
+                android:text="@string/txt_email" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_field_login_email"
+                style="@style/textField"
+             >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_login_email"
+                    style="@style/edittext"
+                    android:autofillHints="emailAddress"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/textlabel"
+                android:layout_marginTop="30dp"
+                android:text="@string/txt_password" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/text_field_login_password"
+                style="@style/textField"
+                app:errorTextColor="@color/red">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_login_password"
+                    style="@style/edittext"
+                    android:autofillHints="password"
+                    android:imeOptions="actionGo"
+                    android:inputType="textPassword"
+                    android:textColorHint="@color/gray_light" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tv_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:padding="5dp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/blue"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/bt_login"
+                style="@style/button"
+                android:layout_marginHorizontal="30dp"
+                android:backgroundTint="@color/blue"
+                android:text="@string/txt_bt_login"
+                android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -126,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:text="@string/dont_have_account"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <LinearLayout
@@ -153,9 +151,8 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-        </FrameLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

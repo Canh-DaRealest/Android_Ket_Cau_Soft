@@ -5,100 +5,115 @@
     android:id="@+id/ln_exam_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_background_main"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/bottom_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+    <include
+        android:id="@+id/include_exam_back"
+        layout="@layout/item_back_actionbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
         android:id="@+id/ln_show_snack_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_bottom_background"
         android:orientation="vertical"
-        android:padding="20dp"
+        android:paddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/question_number"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+         >
+
+            <LinearLayout
+                android:padding="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/question_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Cau hoi so 2/25"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/question_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/example_ques"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <RadioGroup
+                    android:id="@+id/rg_radio_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
+
+                    <RadioButton
+                        android:id="@+id/rb_answer_a"
+                        style="@style/radioButton"
+                        android:layout_marginVertical="5dp"
+                        android:text="@string/example_answ_a" />
+
+                    <RadioButton
+                        android:id="@+id/rb_answer_b"
+                        style="@style/radioButton"
+                        android:layout_marginVertical="5dp"
+                        android:text="@string/example_answ_b" />
+
+                    <RadioButton
+                        android:id="@+id/rb_answer_c"
+                        style="@style/radioButton"
+                        android:layout_marginVertical="5dp"
+                        android:text="@string/example_answ_c" />
+
+                    <RadioButton
+                        android:id="@+id/rb_answer_d"
+                        style="@style/radioButton"
+                        android:layout_marginVertical="5dp"
+                        android:text="@string/example_answ_d" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <View
+            android:background="@color/black"
+          style="@style/lineView"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="Cau hoi so 2/25"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/question_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif-light"
-            android:text="@string/example_ques"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-        <RadioGroup
-            android:id="@+id/rg_radio_group"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
-
-            <RadioButton
-                android:id="@+id/rb_answer_a"
-                style="@style/radioButton"
-                android:layout_marginVertical="5dp"
-                android:text="@string/example_answ_a" />
-
-            <RadioButton
-                android:id="@+id/rb_answer_b"
-                style="@style/radioButton"
-                android:layout_marginVertical="5dp"
-                android:text="@string/example_answ_b" />
-
-            <RadioButton
-                android:id="@+id/rb_answer_c"
-                style="@style/radioButton"
-                android:layout_marginVertical="5dp"
-                android:text="@string/example_answ_c" />
-
-            <RadioButton
-                android:id="@+id/rb_answer_d"
-                style="@style/radioButton"
-                android:layout_marginVertical="5dp"
-                android:text="@string/example_answ_d" />
-
-        </RadioGroup>
-
-
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/blue"
+            android:elevation="11dp"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="Câu tiếp theo"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/bt_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/blue"
-        android:elevation="11dp"
-        android:gravity="center"
-        android:paddingVertical="10dp"
-        android:text="Câu tiếp theo"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

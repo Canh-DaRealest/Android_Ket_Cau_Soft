@@ -41,6 +41,8 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
 
     @Override
     protected void initView() {
+        mBinding.includeRawMaterialBack.tvBackText.setText("Vật Liệu");
+        mBinding.includeRawMaterialBack.ivBack.setOnClickListener(this);
 
 
 
@@ -72,7 +74,7 @@ public class RawMaterialFragment extends BaseFragment<FragmentRawMaterialBinding
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
-        showSnackbar(mBinding.lnRawMaterialMain, key + ": " + msg, true);
+        showSnackbar(mBinding.lnRawMaterialMain,  msg, true);
     }
 
     private void updateData(String msg, List<RawMaterialData> lData) {

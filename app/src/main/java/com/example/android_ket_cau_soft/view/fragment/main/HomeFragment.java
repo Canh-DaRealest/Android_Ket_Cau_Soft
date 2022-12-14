@@ -25,7 +25,9 @@ import com.example.android_ket_cau_soft.model.ObjectResult;
 import com.example.android_ket_cau_soft.model.material_search.LiveLoadData;
 import com.example.android_ket_cau_soft.model.material_search.NaturalData;
 import com.example.android_ket_cau_soft.model.material_search.RawMaterialData;
+import com.example.android_ket_cau_soft.sharepreference.CustomSharePreference;
 import com.example.android_ket_cau_soft.view.fragment.BaseFragment;
+import com.example.android_ket_cau_soft.view.fragment.login.LoginFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.exam.ExaminationFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.material.LiveLoadFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.material.NaturaDataFragment;
@@ -285,14 +287,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
 
     @Override
     public void onCallbackError(String key, String msg) {
-        if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            super.onCallbackError(key, msg);
-        } else {
-            if (isAdded()) {
-                showSnackbar(requireActivity().findViewById(R.id.sl_home_swipeRefreshLayout), msg, true);
-            }
+        if (isAdded()) {
+            showSnackbar(requireActivity().findViewById(R.id.sl_home_swipeRefreshLayout), msg, true);
         }
-
     }
 
     private void clickBttnSeemore(TextView tvSeeMore, ObjectResult objectResult) {
@@ -358,6 +355,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeFragment
         super.onStop();
         if (mBinding.slHomeSwipeRefreshLayout.isRefreshing()) {
             mBinding.slHomeSwipeRefreshLayout.setRefreshing(false);
+        }
+        if (mViewModel.getCall() != null) {
+            mViewModel.getCall().cancel();
         }
     }
 }

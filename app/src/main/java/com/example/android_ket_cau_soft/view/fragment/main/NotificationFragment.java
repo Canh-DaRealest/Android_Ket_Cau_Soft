@@ -2,6 +2,7 @@ package com.example.android_ket_cau_soft.view.fragment.main;
 
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
@@ -35,6 +36,9 @@ public class NotificationFragment extends BaseFragment<FragmentNotificationBindi
 
     @Override
     protected void initView() {
+        mBinding.includeNotifyBack.tvBackText.setText("Thông Báo");
+        mBinding.includeNotifyBack.ivBack.setVisibility(View.GONE);
+
         mBinding.swNotificationLayout.setOnRefreshListener(this);
         checkNetworkConnection();
 

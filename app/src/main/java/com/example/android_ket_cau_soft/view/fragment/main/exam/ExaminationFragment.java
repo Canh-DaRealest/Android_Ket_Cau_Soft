@@ -31,6 +31,8 @@ public class ExaminationFragment extends BaseFragment<FragmentExaminationBinding
 
     @Override
     protected void initView() {
+        mBinding.includeExamBack.tvBackText.setText("Sát Hạch CCHN");
+        mBinding.includeExamBack.ivBack.setOnClickListener(this);
 
         updateRadiobuttonlist();
         mBinding.btSubmit.setOnClickListener(this);
@@ -105,6 +107,8 @@ public class ExaminationFragment extends BaseFragment<FragmentExaminationBinding
             backToPreviousFragment();
         } else if (v.getId() == R.id.bt_submit) {
             doClickButtonSubmit();
+        }else if (v.getId() == R.id.iv_back) {
+         backToPreviousFragment();
         }
     }
 

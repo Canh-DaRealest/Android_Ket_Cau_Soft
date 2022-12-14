@@ -2,84 +2,93 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ln_raw_material_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:id="@+id/ln_raw_material_main"
+    android:background="@drawable/bg_background_main"
     android:orientation="vertical">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/bottom_background"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <include
+        android:id="@+id/include_raw_material_back"
+        layout="@layout/item_back_actionbar"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp">
+        android:layout_marginTop="100dp"
+        android:background="@drawable/bg_bottom_background"
+        android:paddingTop="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Vật liệu"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-        <TextView
-            android:id="@+id/tv_raw_material1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/roundcorner"
-            android:drawableStart="@drawable/ic_arrow_down"
-            android:fontFamily="sans-serif-light"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="15dp"
-            android:text="Chọn"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Vật liệu"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_raw_material1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundcorner"
+                android:drawableStart="@drawable/ic_arrow_down"
+                android:fontFamily="sans-serif-light"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:text="Chọn"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Cấp bền"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Cấp bền"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/tv_raw_material2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundcorner"
-            android:drawableStart="@drawable/ic_arrow_down"
-            android:fontFamily="sans-serif-light"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="15dp"
-            android:text="Chọn"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/tv_raw_material3"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/roundcorner"
-            android:fontFamily="sans-serif-light"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="15dp"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_raw_material2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/roundcorner"
+                android:drawableStart="@drawable/ic_arrow_down"
+                android:fontFamily="sans-serif-light"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:text="Chọn"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_raw_material3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/roundcorner"
+                android:fontFamily="sans-serif-light"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="15dp"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

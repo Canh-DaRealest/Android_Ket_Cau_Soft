@@ -12,6 +12,7 @@ import com.example.android_ket_cau_soft.api.apiservice.APIService;
 import com.example.android_ket_cau_soft.api.clientservice.ClientService;
 import com.example.android_ket_cau_soft.api.request.CheckTokenReques;
 import com.example.android_ket_cau_soft.api.request.LoginRequest;
+import com.example.android_ket_cau_soft.api.response.setting.CheckTokenResponse;
 import com.example.android_ket_cau_soft.callback.OnAPICallback;
 import com.example.android_ket_cau_soft.callback.OnCheckingCallback;
 import com.example.android_ket_cau_soft.database.entities.User;
@@ -72,12 +73,6 @@ public class BaseVM extends ViewModel {
     }
 
 
-    protected void getABC(String key) {
-
-
-        getAPIService().login(new LoginRequest("a", "b")).enqueue(initResponeCallback(key));
-    }
-
     protected <T> Callback<T> initResponeCallback(String key) {
 
         return new Callback<T>() {
@@ -89,15 +84,16 @@ public class BaseVM extends ViewModel {
 
                 } else {
 
-                    handleAPIFail(key, response.code(), response.errorBody().toString());
+                    handleAPIFail(key, response.code(),"Vui lòng thao tác chậm lại");
+                 //   response.errorBody().toString()
+                    call.cancel();
                 }
             }
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-
                 handleAPIException(key, t.getMessage());
-
+                call.cancel();
             }
         };
 
@@ -114,9 +110,9 @@ public class BaseVM extends ViewModel {
 
     protected void handleAPIFail(String key, int code, String message) {
         if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
-            onCheckingCallback.onCallbackError(key, code + "");
-        }else{
-            onCheckingCallback.onCallbackError(key, code + " : " + message + ", vui lòng thử lại");
+            onCheckingCallback.onCallbackError(key, "Lỗi: "+code+message );
+        } else {
+            onCheckingCallback.onCallbackError(key, "Lỗi: "+code + " : " + message + ", vui lòng thử lại");
 
         }
     }
@@ -165,8 +161,18 @@ public class BaseVM extends ViewModel {
         }
     }
 
+    protected Call<CheckTokenResponse> call;
+
+    public Call<CheckTokenResponse> getCall() {
+        if (call != null) {
+            return call;
+        }
+        return null;
+    }
+
     public void checkToken(String email, String token) {
-        getAPIService().checkToken(new CheckTokenReques(email, token)).enqueue(initResponeCallback(EnumStorage.CHECK_TOKEN.getEnumValue()));
+        call = getAPIService().checkToken(new CheckTokenReques(email, token));
+        call.enqueue(initResponeCallback(EnumStorage.CHECK_TOKEN.getEnumValue()));
     }
 
     protected void getNotification(String token) {
