@@ -7,6 +7,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 
+import androidx.activity.OnBackPressedCallback;
+
 import com.example.android_ket_cau_soft.EnumStorage;
 import com.example.android_ket_cau_soft.R;
 import com.example.android_ket_cau_soft.database.entities.User;
@@ -14,6 +16,7 @@ import com.example.android_ket_cau_soft.databinding.FragmentLoginBinding;
 import com.example.android_ket_cau_soft.model.UserData;
 import com.example.android_ket_cau_soft.sharepreference.CustomSharePreference;
 import com.example.android_ket_cau_soft.view.fragment.BaseFragment;
+import com.example.android_ket_cau_soft.view.fragment.main.HomeFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.MainFragment;
 import com.example.android_ket_cau_soft.viewmodel.login.LoginVM;
 import com.google.android.material.textfield.TextInputLayout;
@@ -35,6 +38,19 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
 
     @Override
     protected void initView() {
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                    requireActivity().finish();
+
+
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+
+
         hideSoftKeboard();
         mViewModel.updateAccountFromDB();
 

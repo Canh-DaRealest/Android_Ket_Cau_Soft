@@ -152,10 +152,9 @@ public class MainFragment extends BaseFragment<FragmentMainBinding, MainFragment
 
                     mViewModel.setCurrentFragment(EnumStorage.MENU_HOME.getEnumValue());
                     mBinding.bottomNav.getMenu().getItem(0).setChecked(true);
-                } else {
-                    requireActivity().onBackPressed();
+                }else{
+                    requireActivity().finish();
                 }
-
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);

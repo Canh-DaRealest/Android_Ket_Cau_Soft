@@ -36,14 +36,7 @@ public class MainActivity extends BaseAct<ActivityLoginBinding, CommonVM> {
 
     @Override
     public void onBackPressed() {
-        Fragment fragmentManager = getSupportFragmentManager().findFragmentById(R.id.fr_container_login);
-
-        if (fragmentManager instanceof LoginFragment) {
-            finish();
-
-        } else {
-                super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
 }
