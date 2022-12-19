@@ -17,10 +17,14 @@ import java.util.List;
 
 public class HomeFragmentVM extends BaseVM {
 
-    private List<NewsData> newsDataList = new ArrayList<>();
-    private List<CourseData> hotCourseData = new ArrayList<>();
-    private List<CourseData> newCourseData = new ArrayList<>();
+    public  static List<NewsData> newsDataList = new ArrayList<>();
+    public static List<CourseData> hotCourseData = new ArrayList<>();
+    public static List<CourseData> newCourseData = new ArrayList<>();
 
+    public static boolean isNull = false;
+    public  static int unReadNotify;
+    public static String newCourseTitle;
+    public  static String hotCourseTitle;
 
     public void updateNewsDataList() {
         getAPIService().getHotNews().enqueue(initResponeCallback(EnumStorage.HOTNEWS_REQUEST.getEnumValue()));
@@ -36,6 +40,8 @@ public class HomeFragmentVM extends BaseVM {
 
 
             if (response.getStatus()) {
+                NewsData[] mData = (NewsData[]) response.getData();
+                setNewsDataList(mData);
 
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
             } else {
@@ -47,6 +53,9 @@ public class HomeFragmentVM extends BaseVM {
             CourseResponse response = (CourseResponse) body;
 
             if (response.getStatus()) {
+                List<CourseData> mData = (List<CourseData>) response.getData();
+                setHotCourseList(mData);
+                hotCourseTitle =  response.getMsg();
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
             } else {
                 onCheckingCallback.onCallbackError(key, response.getMsg());
@@ -58,9 +67,15 @@ public class HomeFragmentVM extends BaseVM {
             CourseResponse response = (CourseResponse) body;
 
             if (response.getStatus() && response.getData() != null) {
+
+                List<CourseData> mData = (List<CourseData>) response.getData();
+                setNewCourseList(mData);
+                newCourseTitle =  response.getMsg();
                 onCheckingCallback.onCallbackSuccess(key, response.getMsg(), response.getData());
             }
+
         } else if (key.equals(EnumStorage.CHECK_TOKEN.getEnumValue())) {
+            isNull= true;
             CheckTokenResponse response = (CheckTokenResponse) body;
 
             if (response.getStatus()) {
@@ -75,6 +90,7 @@ public class HomeFragmentVM extends BaseVM {
             NotificationResponse response = (NotificationResponse) body;
 
             if (response.getStatus()) {
+                unReadNotify = response.getUnread_num();
                 onCheckingCallback.onCallbackSuccess(key, response.getUnread_num() + "", response.getNotifiDataList());
             } else {
                 onCheckingCallback.onCallbackError(key, response.getMsg());

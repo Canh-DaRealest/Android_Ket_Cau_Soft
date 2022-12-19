@@ -24,8 +24,9 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:itemBackground="@color/color_hot_news"
+            app:itemBackground="@color/clolor_topmain"
             app:itemIconTint="@color/state_menu_checked"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
             app:itemTextColor="@color/state_menu_checked"
             app:menu="@menu/item_bottom_menu" />
 

@@ -193,7 +193,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
 
     @Nullable
     @Override
-    public final View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public  View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = initViewBinding(inflater);
         mViewModel = new ViewModelProvider(this).get(getClassVM());
@@ -208,7 +208,7 @@ public abstract class BaseFragment<T extends ViewBinding, M extends BaseVM> exte
     protected abstract T initViewBinding(LayoutInflater inflater);
 
     @Override
-    public final void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public  void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         checkNetworkConnection();
