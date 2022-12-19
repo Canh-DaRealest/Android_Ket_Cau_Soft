@@ -1,10 +1,13 @@
 package com.example.android_ket_cau_soft.view.fragment.login;
 
+import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.activity.OnBackPressedCallback;
@@ -15,6 +18,8 @@ import com.example.android_ket_cau_soft.database.entities.User;
 import com.example.android_ket_cau_soft.databinding.FragmentLoginBinding;
 import com.example.android_ket_cau_soft.model.UserData;
 import com.example.android_ket_cau_soft.sharepreference.CustomSharePreference;
+import com.example.android_ket_cau_soft.view.activity.MainActivity;
+import com.example.android_ket_cau_soft.view.dialog.CustomProgressDialog;
 import com.example.android_ket_cau_soft.view.fragment.BaseFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.HomeFragment;
 import com.example.android_ket_cau_soft.view.fragment.main.MainFragment;
@@ -25,6 +30,7 @@ import java.util.Objects;
 
 public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
     public static final String TAG = LoginFragment.class.getName();
+    private CustomProgressDialog pgDialog;
 
     @Override
     protected Class<LoginVM> getClassVM() {
@@ -38,17 +44,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
 
     @Override
     protected void initView() {
-
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-
-                    requireActivity().finish();
-
-
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
 
 
         hideSoftKeboard();
@@ -128,6 +123,9 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
     @Override
     public void onCallbackError(String key, String msg) {
         super.onCallbackError(key, msg);
+        if (pgDialog!=null&&pgDialog.isShowing()){
+            pgDialog.dismiss();
+        }
         if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
             mViewModel.setState(false);
             showSnackbar(mBinding.lnFrgLogin, msg, true);
@@ -150,6 +148,9 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
     @Override
     public void onCallbackSuccess(String key, String msg, Object data) {
         super.onCallbackSuccess(key, msg, data);
+        if (pgDialog!=null&&pgDialog.isShowing()){
+            pgDialog.dismiss();
+        }
         if (key.equals(EnumStorage.NETWORK_STATE.getEnumValue())) {
 
 
@@ -181,8 +182,11 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginVM> {
         mViewModel.setInputEmail(Objects.requireNonNull(mBinding.edtLoginEmail.getText()).toString());
         mViewModel.setInputPassword(Objects.requireNonNull(mBinding.edtLoginPassword.getText()).toString());
 
-        showProgressDialog();
+
+      pgDialog =  new CustomProgressDialog(mContext);
+        pgDialog.show();
         mViewModel.checkInputEmailAndPassword();
+
 
     }
 

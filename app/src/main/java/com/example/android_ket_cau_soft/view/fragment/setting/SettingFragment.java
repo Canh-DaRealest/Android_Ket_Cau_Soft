@@ -81,7 +81,7 @@ public class SettingFragment extends BaseFragment<FragmentSettingBinding, Settin
     }
 
     private void dosignOut() {
-        showProgressDialog();
+     //   showProgressDialog();
         mViewModel.checkLogout();
     }
 
